@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>jangui-wawi</title>
+    <link>/</link>
+    <description>Recent content on jangui-wawi</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 10 May 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Security incidents in Mali: the data</title>
+      <link>/2018/05/security-incidents-in-mali-the-data/</link>
+      <pubDate>Thu, 10 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/2018/05/security-incidents-in-mali-the-data/</guid>
+      <description>My first data science projectI first started to work on the list from the Malilink website during October 2017. I was stunned that I haven’t heard about it before (that goes to show that don’t read all my emails; I joined the platform few years earlier and I was on the mailing list). My first approach was to copy from the website and paste into an Excel spreadsheet (at that time, I hadn’t learned about the miracles of web scraping packages - I’m almost ashamed to admit it).</description>
+    </item>
+    
+    <item>
+      <title>Probably over my head</title>
+      <link>/2018/05/probably-over-my-head/</link>
+      <pubDate>Fri, 04 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/2018/05/probably-over-my-head/</guid>
+      <description>Last year, I made a new friend. She (yes, it’s a “she”) introduced me to Kaggle. I had no idea what that was. She was amused, and I slightly embarrassed. I, who think of myself as a worldly man, modern, aware of what happening here and there (yes, I get sometimes caught up a delusion of grandeur in my head), had no clue what Kaggle was. She proposed that we train together to enter a competition.</description>
+    </item>
+    
+    <item>
+      <title>Here I go</title>
+      <link>/2018/05/here-i-go/</link>
+      <pubDate>Thu, 03 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/2018/05/here-i-go/</guid>
+      <description>I’m terrified as I write these words. Not because I’ve been summoned by Queen Cersei or because I’m fighting the White Walkers alongside Jon Snow. No. I wish I was, though. Ok, almost. I’m terrified because this is my first step in blogging. Few years back, when I was younger, I probably would’ve been care-free. But now, now that I know how much words matter, I tend to be cautious when talking or writing.</description>
+    </item>
+    
+    <item>
+      <title>About</title>
+      <link>/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/about/</guid>
+      <description>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec ex vel orci dapibus aliquam non in metus. Vestibulum posuere justo nunc, eu eleifend orci dignissim in. Vestibulum eu eros neque. Quisque luctus posuere sapien nec accumsan. Maecenas mattis, nisl ac dictum ultrices, ligula eros vehicula eros, vel fermentum diam erat eget dolor. Suspendisse vitae felis ligula. Integer quis tincidunt risus, convallis ullamcorper dui. Suspendisse potenti. Sed scelerisque volutpat leo, at mattis ipsum posuere nec.</description>
+    </item>
+    
+    <item>
+      <title>Contact</title>
+      <link>/contact/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/contact/</guid>
+      <description>Contact us!</description>
+    </item>
+    
+    <item>
+      <title>Security incidents in Mali: diving in with visualization</title>
+      <link>/1/01/security-incidents-in-mali-diving-in-with-visualization/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/1/01/security-incidents-in-mali-diving-in-with-visualization/</guid>
+      <description>No shortcut to learningWhen I started writing this post, I was fairly confident it would be quick. After all, I had all the materials I needed, a bunch of scripts I had spent months writing. It was supposed to be a matter of copy-and-paste. I was wrong. You see, once again, I underestimated the power of the monster in me who wants to get it right all the time.</description>
+    </item>
+    
+  </channel>
+</rss>

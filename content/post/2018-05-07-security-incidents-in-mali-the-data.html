@@ -1,0 +1,156 @@
+---
+title: 'Security incidents in Mali: the data'
+author: Fousseynou Bah
+date: '2018-05-10'
+categories:
+  - R
+tags:
+  - data
+  - Mali
+  - security
+  - terrorism
+  - threats
+slug: security-threats-in-mali-the-data
+---
+
+
+
+<div id="my-first-data-science-project" class="section level1">
+<h1>My first data science project</h1>
+<p>I first started to work on the list from the <a href="http://malilink.net/attaques-terroriste-au-mali/">Malilink</a> website during October 2017. I was stunned that I haven’t heard about it before (that goes to show that don’t read all my emails; I joined the platform few years earlier and I was on the mailing list). My first approach was to copy from the website and paste into an Excel spreadsheet (at that time, I hadn’t learned about the miracles of web scraping packages - I’m almost ashamed to admit it). That wasn’t working well. Enter approach n°2: entering the data by hand. I quickly realized what a terrible idea that was. I was slow and the method was prone to error. Then, came in approach n°3 (since three’s the charm). I decided to reach out to a friend who’s a contributor to the website, but I didn’t want to “show up” empty-handed. I wanted him to see what I was up to, hoping that would make my data resquest more likely to meet a favorable answer. So, I decided to focus on a portion of the list. After all, even if I had acquired all the data at that time, I still would’ve needed a vision, a plan, a strategy…(ok, I’m just being unnecessarily dramatic). I sent him a couple of graphs and maps I came up with after few days of work. He liked them and encouraged me. Suffice to say that he generously gave me the file he had. It was up-to-date and well organized. But, that was just the beginning.</p>
+<p>Very soon after I started the project, I realized that I needed to be mindful of two things: my attitude towards the data and my choices of words.</p>
+<p>First, the data. I understood that I needed to come at it with as little judgement, and as much detachment as possible. That sounds paradoxical given that I chose the topic itself out of concern for my country (I know it’s very patriotic, but please, don’t call me a hero…ok, if you insist, go ahead). I knew I was not undertaking the role of an advocate, but that of a data analyst. I had to be committed to the data above everything else. I was not to add or remove any piece of information. The job I assigned to myself was to organize the data, make it ready for analysis, and explore it through visualization and statistics without altering the source material. Easier said than done! I know. The best way I found to help me, though, was by sharing, by allowing other people to reproduce the work, to build on it, and challenge it. That’s why I created a <a href="https://github.com/fousseynoubah/ssm">GitHub repository</a> for this project.</p>
+<p>Second, the words. Few days in, I realized that the list was not limited to terrorist attacks. It included incidents of various nature, ranging from deadly assaults on civilians by terrorist organizations to clashes between communities or ethnic groups over land or livestock, to confrontations between military forces and armed groups, or between the latter themselves. In the face of such a diversity, I had to find an expression that would be as neutral as possible, that would allow me to refer to the general without misrepresenting the particular. So, I settled for “incidents”.</p>
+</div>
+<div id="organizing-and-transforming-the-data" class="section level1">
+<h1>Organizing and transforming the data</h1>
+<div id="the-original-four" class="section level2">
+<h2>The original four</h2>
+<p>The data used can be found on a <a href="http://malilink.net/attaques-terroriste-au-mali/">page</a> of the Malilink website. Titled “Liste des Attaques Terroristes au Mali” (<em>List of Terrorist Attacks in Mali</em>), it shows a list of four (4) columns:</p>
+<ul>
+<li><code>No.</code> : an incremented series, similar to an unique identifier for each event;</li>
+<li><code>Date</code>: simply the date of the event;</li>
+<li><code>Evenement/Attaque</code> (<em>Event/Attack</em>): providing details on the event;</li>
+<li><code>Victime</code> (<em>Victims</em>): giving the count of victims (dead and injured).</li>
+</ul>
+<p>From those original columns, I derived new ones. I operated following a simple rule: each event is a unit/observation for which a column indicates an attribute. To determine which variables to create, I raised a series of questions:</p>
+<ul>
+<li>When and where did the event take place?</li>
+<li>Who was the author ?</li>
+<li>Who was the target ?</li>
+<li>How many victims did it make (dead and injured)?</li>
+<li>What do we know about the victims? Can they be categorized?</li>
+</ul>
+<p>From these questions, it became obvious that the original table would need to be split into parts. On one hand there would be the details on the events, and, on the other, the information on the victims. Basically, we’d have a relationship of <em>one-to-many</em>. An event can make many victims, but a victim can only be associated with one event (unless if he/she is particularly unlucky).</p>
+</div>
+<div id="the-new-kids-on-the-block" class="section level2">
+<h2>The new kids on the block</h2>
+<p>In the first stage on the data transformation, I set out to create a large dataframe, where every relevant information on an event would be stored in a column. Later on, columns that refer to the same attribute would be transformed into a column of their own. That was mostly necessary for the victims.</p>
+<p>In the dataframe, I kept the original columns.</p>
+<pre><code>## Observations: 700
+## Variables: 4
+## $ no_list &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16,...
+## $ date    &lt;date&gt; 2015-01-01, 2015-01-05, 2015-01-09, 2015-01-16, 2015-...
+## $ event   &lt;chr&gt; &quot;Attaque d&#39;un convoi civil à 37 km d’Andéranboukane su...
+## $ victims &lt;chr&gt; &quot;2 morts (dont le maire d’Andéranboukane)&quot;, &quot;10 morts ...</code></pre>
+<p>I added new ones that can be categorized into five (5) groups: time, space, additional details on the incidents, victims and sources.</p>
+<div id="time" class="section level3">
+<h3>Time</h3>
+<p>In this group, I just decomposed the dates into days, months and years. It seemed unnecessary at first, but proved useful later on, especially with agregations.</p>
+<pre><code>## Observations: 700
+## Variables: 3
+## $ year  &lt;dbl&gt; 2015, 2015, 2015, 2015, 2015, 2015, 2015, 2015, 2015, 20...
+## $ month &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 3, 3, 3, 3,...
+## $ day   &lt;dbl&gt; 1, 5, 9, 16, 16, 17, 20, 25, 26, 27, 28, 31, 31, 14, 15,...</code></pre>
+</div>
+<div id="space" class="section level3">
+<h3>Space</h3>
+<p>I added this group to enable the mapping of the events, and the computation of region-based statistics. I found on the website of United Nations Office for the Coordination of Humanitarian Affairs (OCHA) the two resources I needed for that:</p>
+<ul>
+<li>the <a href="https://data.humdata.org/dataset/administrative-boundaries-cod-mli">shapefiles</a> of the different administrative divisions;</li>
+<li>the <a href="https://data.humdata.org/dataset/mali-settlements">coordinates</a> of the locations of the incidents.</li>
+</ul>
+<p>After a while, I realized the need to have two sub-categories within this category: the points and the lines. For the former, the details on the locations were clear. It was known where the incidents took place. A latitude and a longitude where enough to place the points on a map (and to make whatever point one wants to make…terrible pun, I know). For the latter, however, the pinpointing was not possible. Most of the times, those events involved moving targets (transportation vehicules, for instance) or took place in areas that are not well known. To avoid any arbitrary choice as to their “real” location, I decided to use the coordinates of the known locations between which they took place, hence ending up with a line rather than a point. I tried to align, as much as possible, with the details provided in the original list to determine which point was the “departure” and which was the “arrival”.</p>
+<p>Overall, I added six (6) new variables:</p>
+<pre><code>## Observations: 700
+## Variables: 6
+## $ point_id     &lt;chr&gt; NA, &quot;40505000&quot;, &quot;80000000&quot;, &quot;50808000&quot;, &quot;70403016...
+## $ point        &lt;chr&gt; NA, &quot;Nampala&quot;, &quot;Kidal&quot;, &quot;Tenenkou&quot;, &quot;Tabankort&quot;, ...
+## $ departure_id &lt;dbl&gt; 70401000, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
+## $ departure    &lt;chr&gt; &quot;Andéranboukane&quot;, NA, NA, NA, NA, NA, NA, NA, NA,...
+## $ arrival_id   &lt;chr&gt; &quot;70400000&quot;, NA, NA, NA, NA, NA, NA, NA, NA, NA, N...
+## $ arrival      &lt;chr&gt; &quot;Ménaka&quot;, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...</code></pre>
+<p>The variables with the “id” suffixe refer to the codes used in the OCHA files. They were meant to enable the joining of the main dataframe with the geographic information.</p>
+</div>
+<div id="additional-details-on-the-incidents" class="section level3">
+<h3>Additional details on the incidents</h3>
+<p>I also created four variables related to the incidents:</p>
+<ul>
+<li>type: specifying whether the incident was an attack, a confrontation between communities/ethnic groups, or of another nature;</li>
+<li>weapon: informing on the weapon used, if any used (firearms, mines, explosives, etc);</li>
+<li>author: indicating the author(s) or the involved parties;</li>
+<li>target: indicating the target(s) or the involved parties; For each of these variables, I followed the description given in the original list. During this process, everytime I faced an ambiguous situation (inintelligible phrasing, information missing), I chose to go with NA, <em>non available</em>.</li>
+</ul>
+<pre><code>## Observations: 700
+## Variables: 4
+## $ type_incident &lt;chr&gt; &quot;Attaque&quot;, &quot;Attaque&quot;, &quot;Attaque&quot;, &quot;Attaque&quot;, &quot;Aff...
+## $ weapon        &lt;chr&gt; &quot;ND&quot;, &quot;ND&quot;, &quot;Mine&quot;, &quot;ND&quot;, &quot;ND&quot;, &quot;Roquette&quot;, &quot;ND&quot;...
+## $ author        &lt;chr&gt; &quot;ND&quot;, &quot;ND&quot;, &quot;ND&quot;, &quot;ND&quot;, &quot;Rebelles / GATIA&quot;, &quot;ND&quot;...
+## $ target        &lt;chr&gt; &quot;Civil&quot;, &quot;AMA&quot;, &quot;MINUSMA&quot;, &quot;Civil + AMA&quot;, &quot;Rebel...</code></pre>
+</div>
+<div id="victims" class="section level3">
+<h3>Victims</h3>
+<p>Regarding the victims, the original list provided, almost everytime, general counts, thus enabling the addition of three new variables: the dead, the injured and the total.</p>
+<pre><code>## Observations: 700
+## Variables: 3
+## $ nbr_dead    &lt;dbl&gt; 2, 10, 0, 3, 26, 1, 5, 3, 0, 3, 12, 12, 1, 7, 0, 5...
+## $ nbr_injured &lt;dbl&gt; 0, 0, 7, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, NA, 4, 9, 0...
+## $ nbr_victims &lt;dbl&gt; 2, 10, 7, 3, 26, 2, 5, 3, 1, 3, 12, 12, 1, 7, 4, 1...</code></pre>
+<p>In many cases, the list also provided information on the identity of the victims, indicating whether they were civilians (merchants, travellers, shepherds, farmers, etc.), part of the armed forces (FAMA, MINUSMA, Barkhane), local officials (mayors, head of villages, etc.) or with one the movements in the region. To process this information, I created twelve (12) new variables in the large dataframe.</p>
+<pre><code>## Observations: 700
+## Variables: 12
+## $ stat_dead_1     &lt;chr&gt; &quot;civil&quot;, &quot;soldat&quot;, NA...
+## $ count_dead_1    &lt;dbl&gt; 1, 8, NA, 2, 26, 1, 5...
+## $ stat_dead_2     &lt;chr&gt; &quot;ND&quot;, &quot;assaillant&quot;, N...
+## $ count_dead_2    &lt;dbl&gt; 1, 2, NA, 1, NA, NA, ...
+## $ stat_dead_3     &lt;chr&gt; NA, NA, NA, NA, NA, N...
+## $ count_dead_3    &lt;dbl&gt; NA, NA, NA, NA, NA, N...
+## $ stat_injured_1  &lt;chr&gt; NA, NA, &quot;casque bleu&quot;...
+## $ count_injured_1 &lt;dbl&gt; NA, NA, 7, NA, NA, 1,...
+## $ stat_injured_2  &lt;chr&gt; NA, NA, NA, NA, NA, N...
+## $ count_injured_2 &lt;dbl&gt; NA, NA, NA, NA, NA, N...
+## $ stat_injured_3  &lt;chr&gt; NA, NA, NA, NA, NA, N...
+## $ count_injured_3 &lt;dbl&gt; NA, NA, NA, NA, NA, N...</code></pre>
+<p>The variables with the prefix “stat” give the status of the victims (civilian, soldier, etc.), and those with the prefix “count” indicate their number. I also added two control variables (binary variables: 1/0) to ensure that the sums of the parts (for example count_dead_1 + count_dead_2 + count_dead_3) are equal to the overall counts (nbr_dead).</p>
+<pre><code>## Observations: 700
+## Variables: 2
+## $ check_dead    &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ...
+## $ check_injured &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ...</code></pre>
+<p>After this stage, I was almost done. All that was left was a simple reshaping operation to have a tidy dataframe for the victims. I added the identifier of the original list - to serve as a foreign key for rejoining purposes - and the date - to enable the computation of date-based statistics without needing a joining operation.</p>
+<pre><code>## Observations: 732
+## Variables: 6
+## $ no_list  &lt;dbl&gt; 1, 1, 10, 100, 102, 104, 104, 104, 105, 106, 106, 106...
+## $ date     &lt;date&gt; 2015-01-01, 2015-01-01, 2015-01-27, 2015-11-15, 2015...
+## $ category &lt;ord&gt; Morts, Morts, Morts, Morts, Blessés, Blessés, Morts, ...
+## $ status   &lt;chr&gt; &quot;civil&quot;, &quot;ND&quot;, &quot;ND&quot;, &quot;soldat&quot;, &quot;civil&quot;, &quot;civil&quot;, &quot;civ...
+## $ group    &lt;chr&gt; &quot;Civils&quot;, &quot;ND&quot;, &quot;ND&quot;, &quot;FAMA&quot;, &quot;Civils&quot;, &quot;Civils&quot;, &quot;Ci...
+## $ number   &lt;dbl&gt; 1, 1, 3, 1, 3, 7, 20, 2, 1, 20, 2, 1, 6, 4, 12, 1, 1,...</code></pre>
+</div>
+<div id="sources" class="section level3">
+<h3>Sources</h3>
+<p>This category, the last, was not so much a part of the transformation as a provision for the future. I noticed that the list does not include the sources. I believe their addition is important. It would send a strong signal as the reliability of the data provided in the list, and to some extent, it would make projects like this credible (well, I would like to say <em>more credible</em>). To that end, I added three columns to be filled with links to articles, videos, or podcasts that provide or confirm the information reported in the list. This task is beyond the scope of this project, but I believe it can be achieved with collaborative efforts from different contributors.</p>
+<pre><code>## Observations: 700
+## Variables: 6
+## $ source_1 &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N...
+## $ link_1   &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N...
+## $ source_2 &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N...
+## $ link_2   &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N...
+## $ source_3 &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N...
+## $ link_3   &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N...</code></pre>
+</div>
+</div>
+</div>
+<div id="where-do-we-go-from-here" class="section level1">
+<h1>Where do we go from here?</h1>
+<p>I intend to share the results of my exploratory analysis in future posts. As mentioned earlier, all the source material for this project can be found on a <a href="https://github.com/fousseynoubah/ssm">GitHub page</a>. I don’t know exactly where I’m going with all this, but I hope something good and useful with come out it.</p>
+</div>

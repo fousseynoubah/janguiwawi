@@ -1,0 +1,286 @@
+---
+title: 'Incidents sécuritaires au Mali: les données'
+author: Fousseynou Bah
+date: '2018-05-10'
+categories:
+  - R
+tags:
+  - data
+  - Mali
+  - security
+  - terrorism
+  - threats
+slug: security-threats-in-mali-the-data
+---
+
+```{r setup, include=FALSE}
+#knitr::opts_chunk$set(echo = FALSE)
+Sys.setenv(TZ="Africa/Bamako")
+##########################################################################
+########################################/// PACKAGES ///
+##########################################################################
+library("tidyverse")
+#library("readxl")
+#library("lubridate")
+#library("readxl")
+#library("rgdal")
+#library("maps")
+#library("ggthemes")
+#library("gganimate")
+#library("RColorBrewer")
+#library("geomnet")
+#library("gridExtra")
+#library("knitr")
+#library("forecast")
+#library("xtable")
+#library(readr)
+#library(repmis)
+
+##########################################################################
+########################################/// DATA ///
+##########################################################################
+load(url("https://github.com/fousseynoubah/ssm/blob/master/ssm_data.RData?raw=true"))
+
+```
+
+
+# Mon premier projet de data science
+
+J'ai commencé à travailler sur la lliste du site de [Malilink](http://malilink.net/attaques-terroriste-au-mali/) à partir d'octobre 2017.
+J'était surpris de voir que je n'avais pas entendu parler de cette liste auparavant (ceci montre bien à quel point je ne lis pas mes courriels; j'avais rejoint la plateforme depuis des années et j'étais sur la liste de diffusion des courriers).
+Ma première approche a été de copier depuis le site web et de coller dans un classeur Excel (en ce moment, j'ignorais tout du miracle des packages de *web scraping* - j'ai presque honte de l'admettre).
+Cette technique ne marchait pas bien.
+Entre en scène alors l'approche n°2: la saisie manuelle.
+J'ai rapidement réalisé à quel point cette idée était terrible.
+J'étais lent et la méthode était vulnérable à l'erreur.
+Alors vint l'approche n°3 (comment la chance vient à la troisème tentative).
+J'ai décidé alors de me tourner vers un ami qui est un contributeur du site, mais je ne voulais pas me "pointer" les bras vides.
+Je voulais lui donner une idée de ce que je comptais faire, espérant ceci permettrait à ma demande de rencontre une réponse favorable.
+Ainsi, j'ai décidé de me focaliser sur une partie de la liste.
+Après tout, même j'avais eu toutes les données à cett époque, il m'aurait toujours fallu une vision, un plan, une stratégie (ok, je me fais juste inutilement dramatique là).
+Je lui ai envoyé quelques graphiques et cartes que j'ai pu produire à la suite de quelques jours de travail.
+Il les a aimés et m'a encouragé.
+Il suffit de dire qu'il m'a généreusement remis le fichier qui était à sa disposition.
+C'était à jour et bien organisé.
+Mais ceci était juste de début.
+
+Très rapidement après que j'ai commencé le projet, j'ai réalisé qu'il me fallait veiller sur deux choses: mon attitude par rapport aux données et mes choix de mots.
+
+D'abord, les données.
+J'ai compris qu'il me fallait les prendre avec aussi peu de jugement que possible, avec autant de détachement que possible.
+Ceci peut résonner paradoxal étant donné que j'ai choisi le sujet lui-même pas attachement à mon pays (je sais c'est très patriotique de ma part, mais s'il vous plait, ne m'appelez pas un héros...bon, si vous insistez, allez-y).
+Je savais que je ne m'assignais pas le rôle d'un plaidoyeur, mais celui d'un analyste de données.
+Je me disais d'être fidèle aux données, au-dessus de toute autre chose.
+Je ne pouvais ni ajouter ni enlever un quelque quantité d'information.
+Le travail que je m'étais assigné été celui d'organiser les données, les préparer à l'ananlyse, et de les explorer à travers la visualisation et des statistiques sans alterer la source des informations.
+Plus facile à dire qu'à faire!
+Je sais.
+La meilleure façon que j'ai trouvé pour m'aider, cependant, fut de partager les ressources, permettant ainsi à d'autres personnes de reproduire mon travail, de l'améliorer ou même de le conteste.
+C'est pourquoi j'ai crée un compte [GitHub](https://github.com/fousseynoubah/ssm) pour ce projet.
+
+Ensuite, les mots!
+Quelques jours après le démarrage, j'ai réalisé que la liste n'était pas limitée aux attaques terroristes.
+Elle incluait aussi des incidents de diverses natures, allant des attaques mortelles sur des civils par des organisations terroristes à des affrontement inter-communautaires motivées par des conflits à propos des terres ou des animaux, aux confrontations entre des forces militaires et des groupes armés, ou bien même des confrontations entre ces derniers.
+Face à une telle diversité, je devais trouver une expression qui serait aussi neutre que possible, qui me permettrait d'englober la généralité sans exclure nuire à la représentation des particularités
+J'ai porté mon choix sur le terme "incident".
+
+
+# Organisation et transformation des données
+
+## Les quatre originaux
+
+Les données utilisées peuvent être trouvées sur la [page](http://malilink.net/attaques-terroriste-au-mali/) du site Malilink.
+Titré "Liste des Attaques Terroristes au Mali", elle montre une liste de quatre (4) colonnes:
+
+- `No.` : une série incrémentée, similaire à un identifiant unique pour chaque évènement;
+
+- `Date`: simplement la date de l'évènement;
+
+- `Evenement/Attaque`: fournissant les détails de l'évènement;
+
+- `Victime` : donnant le nombre de victimes (morts et bléssés).
+
+A partir de ces colonnes de départ, de nouvelles ont été tirées.
+Y a été appliquée la simple règle suivante: chaque évènement est une unité/observation pour laquelle une colonne indique un attribut.
+Pour déterminer les colonnes a créer, des séries de questions ont été soulevées:
+
+- Quand et où est-ce que l'évènement a eu lieu?
+
+- Qui en était l'auteur?
+
+- Qui en était la cible?
+
+- Combien de victimes compte-t-on (morts et bléssés)?
+
+- Qui savons-nous des victimes? Peuvent-elles être catégorisées?
+
+A partir de ces questions, il est apparu évident que la table de départ devrait être segmenté en morceaux.
+D'un part, il y aura des détails sur l'évènement et, de l'autre, des informations sur les victimes.
+De façon basique, nous aurons une relation de *one-to-many* (un-à-plusieur).
+Un évènement peut faire plusieurs victimes, mais une victime ne peut être associée qu'à un seul évènement (sauf s'il s'agit d'une personne particulièrement malchanceuse).
+
+
+## Les nouveaux gosses de la rue
+
+Dans la première étape de transformation des données, j'ai tout simplement cherché à créer une grande matrice (*dataframe*, à proprement dire, si l'on peut identifier selon la classe de l'objet dans R), où toutes les informations pertinentes sur les incidents pourraient figurer.
+Ensuite, les colonnes qui se réfèrent aux même attributs ont été plus tard transformer en colonnes à part.
+Ce cas de figure a plus concerné les informations sur les victimes.
+
+Dans la *dataframe*, j'ai conservé les colonnes de départ.
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+incidents %>%
+  select(no_list = no_liste, date, event = evenement, victims = victimes) %>%
+  glimpse()
+```
+
+J'ai ajouté de nouvelles variables qui peuvent être catégorisées en cinq (5) groupes: le temps, l'espace, les détails additionnels sur les incidents, les victimes et les sources.
+
+### Le temps
+
+Dans ce groupe, j'ai juste décomposé les dates en jours, mois et années.
+A première vue, cette transformation semblait peu utile.
+Cependant, plus tard elle s'est avérée fort commode, surtout pour les agrégations.
+
+```{r, echo=FALSE}
+incidents %>%
+  select(year = annee, month = mois, day = jour) %>%
+  glimpse()
+```
+
+
+### L'espace
+
+J'ai ajouté ce groupe pour permettre la représentation cartographique des évènements et le calcul de statistiques basées sur les découpages administratifs.
+J'ai trouvé sur le site *United Nations Office for the Coordination of Humanitarian Affairs (OCHA)* les deux ressources qu'il me fallait pour ça:
+
+- les *[shapefiles](https://data.humdata.org/dataset/administrative-boundaries-cod-mli)* des différentes divisions administratives;
+- les [coordinées](https://data.humdata.org/dataset/mali-settlements) des localisations des incidents.
+
+Après un bout de temps, j'ai réalisé qu'il fallait deux sous-catégories à l'intérieur de cette catégorie: des points et des lignes.
+Pour les premiers, les détails sur les localisations étaient clairs.
+L'on connaissait les endroits (villes, villages, etc.) où les incidents avaient eu lieu.
+Une latitude et une longitude suffisaient pour placer les points sur une carte (et en venir au point que l'on veut...terrible jeu de mot, je sais).
+Pour les secondes par contre, le positionnement précis n'était pas possible.
+La plupart du temps, ces incidents concernaient des cibles mouvantes (véhicules de transport, par exemple) ou avaient lieu dans des lieux qui n'étaient pas bien connus.
+Pour éviter un choic arbitraire en ce qui concerne les véritables localisations, j'ai décidé d'utiliser les coordonnées des lieux connus entre lesquels ces incidents avaient eu lieu.
+De ce fait, j'ai fini avec des lignes plutôt qu'avec des points.
+J'ai essayé de m'aligner, autant que possible, sur les détails donnés dans le liste pour déterminer le point qui était le "départ" et celui qui était l'"arrivée".
+
+De façon globale, j'ai ajouté six (6) variables:
+
+```{r, echo=FALSE}
+incidents %>%
+  select(point_id, point, departure_id = depart_id, departure = depart, arrival_id = arrivee_id, arrival = arrivee) %>%
+  glimpse()
+```
+
+Les variables avec le suffixe *id* se réfèrent aux codes utilisés dans les fichiers *OCHA*.
+Ils visaient à permettre la jointure de la *dataframe* avec les informations géographiques.
+
+### Détails additionnels sur les incidents
+
+J'ai aussi créeé quatre (4) variables relatives aux incidents:
+
+- type: spécifiant si l'incident était une attaque, une confrontation inter-communautaires/inter-ethnique, ou d'une autre nature;
+
+- armes: informant sur les armes utilisées, s'il y en a (armes à feu, mines, explosifs, etc.);
+
+- auteur: indiquant le/les auteur(s) ou les parties impliquées;
+
+- cible: indiquant les cibles ou les parties impliquées.
+
+Pour chacune de ces variables, j'ai suivi la description données dans la liste originale.
+Pendant ce processus, chaque fois que je suis tombée sur une situation ambigüe (phrasing difficile à comprendre, information manquante), j'ai choisi de m'en tenir à `r NA`, *non available*.
+
+```{r, echo=FALSE}
+incidents %>%
+  select(type_incident, weapon = armes, author = auteur, target =  cibles) %>%
+  glimpse()
+```
+
+### Les victimes
+
+En ce qui concerne les victimes, la liste originale donnait le décomptait, presque chaque fois.
+De ce fait, il a été possible d'ajouter trois nouvelles variables: les morts, les bléssés, les victimes (somme des deux premières)
+
+```{r, echo=FALSE}
+incidents %>%
+  select(nbr_dead = nbr_morts, nbr_injured = nbr_blesses, nbr_victims = nbr_victimes) %>%
+  glimpse()
+```
+
+Dans beaucoup de cas aussi, la liste donnait des informations sur l'identité des victimes, indiquant si elles étaient des civils (commerçant, voyageurs, éleveurs, agriculteurs, etc), membre d'une force armée (FAMA, MINUSMA, Barkhane), des officiels locaux (maires, chefs de village, etc) or membre d'un mouvement dans la région couverte.
+Pour traiter ces informations, j'ai créeé douze (12) nouvelles variables dans la grande *dataframe*.
+
+```{r, echo=FALSE}
+incidents %>%
+  select(stat_dead_1 = stat_morts_1, 
+         count_dead_1 = count_morts_1, 
+         stat_dead_2 = stat_morts_2, 
+         count_dead_2 = count_morts_2, 
+         stat_dead_3 = stat_morts_3, 
+         count_dead_3 = count_morts_3,
+         stat_injured_1 = stat_blesses_1, 
+         count_injured_1 = count_blesses_1, 
+         stat_injured_2 = stat_blesses_2, 
+         count_injured_2 = count_blesses_2, 
+         stat_injured_3 = stat_blesses_3, 
+         count_injured_3 = count_blesses_3) %>%
+  glimpse(width = 50)
+```
+
+Les variables avec le préfixe *stat* donne le statut des victimes (civil, soldats, etc.), and celles avec le préfixe *count* indiquent leur nombre.
+J'ai aussi créeé des variable de contrôle (variables binaires: 1/0) pour vérifier que la somme des parts (par exemple *count_dead_1 + count_dead_2 + count_dead_3*) était égal au total (*nbr_dead*).
+
+```{r, echo=FALSE}
+incidents %>%
+  select(check_dead = check_morts, check_injured = check_blesses) %>% 
+  glimpse() #width = 50
+```
+
+Après cette étape, j'avais presque fini.
+Tout ce qui restait à faire, c'était une simple opération de réorganisation pour avoir des données bien ordonnées (*tidy data*) sur les victimes.
+J'ai ajouté les identifiants de la liste originale pour - pour servir de clé étrangère en cas de jointure avec la liste - et les dates - pour permettre le calcul de statistiques basées sur le temps (sans avoir à faire des jointures avec la liste de base).
+
+```{r, echo=FALSE}
+victimes %>%
+  select(no_list = no_liste,
+         date,
+         category = categorie ,
+         status = statut,
+         group = corps,
+         number = nombre) %>% 
+  glimpse() #width = 50
+```
+
+### Les sources
+
+Cette catégorie, la dernière, n'était pas tant une partie de la transformation opérée qu'une provision pour le futur.
+J'avais remarquée que la liste n'incluait pas les sources.
+Je pense que cette addition est importante
+
+This category, the last, was not so much a part of the transformation as a provision for the future.
+I noticed that the list does not include the sources.
+I believe their addition is important.
+It would send a strong signal as the reliability of the data provided in the list, and to some extent, it would make projects like this credible (well, I would like to say *more credible*).
+To that end, I added three columns to be filled with links to articles, videos, or podcasts that provide or confirm the information reported in the list.
+This task is beyond the scope of this project, but I believe it can be achieved with collaborative efforts from different contributors.
+
+```{r, echo=FALSE}
+incidents %>%
+  select(source_1 = source1, 
+         link_1 = lien1, 
+         source_2 = source2, 
+         link_2 = lien2, 
+         source_3 = source3, 
+         link_3 = lien3) %>% 
+  glimpse() #width = 50
+```
+
+
+# Where do we go from here?
+
+I intend to share the results of my exploratory analysis in future posts.
+As mentioned earlier, all the source material for this project can be found on a [GitHub page](https://github.com/fousseynoubah/ssm).
+I don't know exactly where I'm going with all this, but I hope something good and useful with come out it.

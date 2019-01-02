@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ubuntu on jangui-wawi</title>
+    <link>/fr/tags/ubuntu/</link>
+    <description>Recent content in Ubuntu on jangui-wawi</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 03 May 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/fr/tags/ubuntu/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Et on démarre</title>
+      <link>/fr/2018/05/et-on-d%C3%A9marre/</link>
+      <pubDate>Thu, 03 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/fr/2018/05/et-on-d%C3%A9marre/</guid>
+      <description>Pendant que j’écris ces mots, je suis terrifié. Pas parce que j’ai été sommé par la Reine Cersei ou parce que je livre une bataille aux Marcheurs Blancs aux côtés de Jon Snow. Non. J’aurais bien voulu. Ok, presque. Je suis terrifié parce que ceci est mon premier pas dans le blogging. Il y a quelques années, quand j’étais plus jeune, j’aurai probablement été serein. Mais maintenant, maintenant que je connais le poids des mots, j’ai tendance à être prudent quand je parle ou j’écris.</description>
+    </item>
+    
+  </channel>
+</rss>

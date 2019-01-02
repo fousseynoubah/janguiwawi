@@ -1,0 +1,432 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<meta property="og:title" content="Incidents sécuritaires au Mali: les données" />
+<meta property="og:description" content="Mon premier projet de data scienceJ’ai commencé à travailler sur la lliste du site de Malilink à partir d’octobre 2017. J’était surpris de voir que je n’avais pas entendu parler de cette liste auparavant (ceci montre bien à quel point je ne lis pas mes courriels; j’avais rejoint la plateforme depuis des années et j’étais sur la liste de diffusion des courriers). Ma première approche a été de copier depuis le site web et de coller dans un classeur Excel (en ce moment, j’ignorais tout du miracle des packages de web scraping - j’ai presque honte de l’admettre)." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/fr/2018/05/incidents-s%C3%A9curitaires-au-mali-les-donn%C3%A9es/" /><meta property="article:published_time" content="2018-05-10T00:00:00&#43;00:00"/>
+<meta property="article:modified_time" content="2018-05-10T00:00:00&#43;00:00"/>
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Incidents sécuritaires au Mali: les données"/>
+<meta name="twitter:description" content="Mon premier projet de data scienceJ’ai commencé à travailler sur la lliste du site de Malilink à partir d’octobre 2017. J’était surpris de voir que je n’avais pas entendu parler de cette liste auparavant (ceci montre bien à quel point je ne lis pas mes courriels; j’avais rejoint la plateforme depuis des années et j’étais sur la liste de diffusion des courriers). Ma première approche a été de copier depuis le site web et de coller dans un classeur Excel (en ce moment, j’ignorais tout du miracle des packages de web scraping - j’ai presque honte de l’admettre)."/>
+
+
+
+    <link rel="canonical" href="/fr/2018/05/incidents-s%C3%A9curitaires-au-mali-les-donn%C3%A9es/">
+
+    <title>
+      
+        Incidents sécuritaires au Mali: les données | jangui-wawi
+      
+    </title>
+
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="/css/style.css" rel="stylesheet">
+
+    
+
+    
+
+    
+  </head>
+  <body>
+    
+      <header class="blog-header">
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
+        <a class="navbar-brand" href="/fr">
+            <img src="" width="30" height="30" class="d-inline-block align-top"
+    alt="">
+jangui-wawi
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+            <ul class="navbar-nav">
+                
+                
+                <li class="nav-item ">
+                    
+                        <a class="nav-link" href="/fr/">Accueil</a>
+                    
+                </li>
+                
+                <li class="nav-item ">
+                    
+                        <a class="nav-link" href="/fr/about/">A propos de</a>
+                    
+                </li>
+                
+                <li class="nav-item ">
+                    
+                        <a class="nav-link" href="/fr/contact/">Contact</a>
+                    
+                </li>
+                
+            </ul>
+            
+            <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Langue
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                        
+                            <a class="dropdown-item" href="/">English</a>
+                        
+                            <a class="dropdown-item" href="/es/">Español</a>
+                        
+                            <a class="dropdown-item" href="/de/">Deutsch</a>
+                        
+                            <a class="dropdown-item" href="/fr/">Français</a>
+                        
+                    </div>
+                </li>
+            </ul>
+            
+        </div>
+    </nav>
+</header>
+    
+
+    
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-lg-8 blog-main">
+
+          
+
+<header>
+    <h2 class="blog-post-title">
+        <a class="text-dark" href="/fr/2018/05/incidents-s%C3%A9curitaires-au-mali-les-donn%C3%A9es/">Incidents sécuritaires au Mali: les données</a>
+    </h2>
+    
+
+
+<div class="blog-post-date text-secondary">
+    
+        May 10, 2018
+    
+    
+        par <span rel="author">Fousseynou Bah</span>
+    
+</div>
+
+    
+<div class="blog-post-tags text-secondary">
+    <strong>Tags:</strong>
+    
+        <a class="badge badge-primary" href="/fr/tags/data">data</a>
+    
+        <a class="badge badge-primary" href="/fr/tags/mali">Mali</a>
+    
+        <a class="badge badge-primary" href="/fr/tags/security">security</a>
+    
+        <a class="badge badge-primary" href="/fr/tags/terrorism">terrorism</a>
+    
+        <a class="badge badge-primary" href="/fr/tags/threats">threats</a>
+    
+</div>
+
+    
+<div class="blog-post-categories text-secondary">
+    <strong>Catégories:</strong>
+    
+        <a class="badge badge-primary" href="/fr/categories/r">R</a>
+    
+</div>
+
+    <hr>
+</header>
+<article class="blog-post">
+    
+
+
+<div id="mon-premier-projet-de-data-science" class="section level1">
+<h1>Mon premier projet de data science</h1>
+<p>J’ai commencé à travailler sur la lliste du site de <a href="http://malilink.net/attaques-terroriste-au-mali/">Malilink</a> à partir d’octobre 2017. J’était surpris de voir que je n’avais pas entendu parler de cette liste auparavant (ceci montre bien à quel point je ne lis pas mes courriels; j’avais rejoint la plateforme depuis des années et j’étais sur la liste de diffusion des courriers). Ma première approche a été de copier depuis le site web et de coller dans un classeur Excel (en ce moment, j’ignorais tout du miracle des packages de <em>web scraping</em> - j’ai presque honte de l’admettre). Cette technique ne marchait pas bien. Entre en scène alors l’approche n°2: la saisie manuelle. J’ai rapidement réalisé à quel point cette idée était terrible. J’étais lent et la méthode était vulnérable à l’erreur. Alors vint l’approche n°3 (comment la chance vient à la troisème tentative). J’ai décidé alors de me tourner vers un ami qui est un contributeur du site, mais je ne voulais pas me “pointer” les bras vides. Je voulais lui donner une idée de ce que je comptais faire, espérant ceci permettrait à ma demande de rencontre une réponse favorable. Ainsi, j’ai décidé de me focaliser sur une partie de la liste. Après tout, même j’avais eu toutes les données à cett époque, il m’aurait toujours fallu une vision, un plan, une stratégie (ok, je me fais juste inutilement dramatique là). Je lui ai envoyé quelques graphiques et cartes que j’ai pu produire à la suite de quelques jours de travail. Il les a aimés et m’a encouragé. Il suffit de dire qu’il m’a généreusement remis le fichier qui était à sa disposition. C’était à jour et bien organisé. Mais ceci était juste de début.</p>
+<p>Très rapidement après que j’ai commencé le projet, j’ai réalisé qu’il me fallait veiller sur deux choses: mon attitude par rapport aux données et mes choix de mots.</p>
+<p>D’abord, les données. J’ai compris qu’il me fallait les prendre avec aussi peu de jugement que possible, avec autant de détachement que possible. Ceci peut résonner paradoxal étant donné que j’ai choisi le sujet lui-même pas attachement à mon pays (je sais c’est très patriotique de ma part, mais s’il vous plait, ne m’appelez pas un héros…bon, si vous insistez, allez-y). Je savais que je ne m’assignais pas le rôle d’un plaidoyeur, mais celui d’un analyste de données. Je me disais d’être fidèle aux données, au-dessus de toute autre chose. Je ne pouvais ni ajouter ni enlever un quelque quantité d’information. Le travail que je m’étais assigné été celui d’organiser les données, les préparer à l’ananlyse, et de les explorer à travers la visualisation et des statistiques sans alterer la source des informations. Plus facile à dire qu’à faire! Je sais. La meilleure façon que j’ai trouvé pour m’aider, cependant, fut de partager les ressources, permettant ainsi à d’autres personnes de reproduire mon travail, de l’améliorer ou même de le conteste. C’est pourquoi j’ai crée un compte <a href="https://github.com/fousseynoubah/ssm">GitHub</a> pour ce projet.</p>
+<p>Ensuite, les mots! Quelques jours après le démarrage, j’ai réalisé que la liste n’était pas limitée aux attaques terroristes. Elle incluait aussi des incidents de diverses natures, allant des attaques mortelles sur des civils par des organisations terroristes à des affrontement inter-communautaires motivées par des conflits à propos des terres ou des animaux, aux confrontations entre des forces militaires et des groupes armés, ou bien même des confrontations entre ces derniers. Face à une telle diversité, je devais trouver une expression qui serait aussi neutre que possible, qui me permettrait d’englober la généralité sans exclure nuire à la représentation des particularités J’ai porté mon choix sur le terme “incident”.</p>
+</div>
+<div id="organisation-et-transformation-des-donnees" class="section level1">
+<h1>Organisation et transformation des données</h1>
+<div id="les-quatre-originaux" class="section level2">
+<h2>Les quatre originaux</h2>
+<p>Les données utilisées peuvent être trouvées sur la <a href="http://malilink.net/attaques-terroriste-au-mali/">page</a> du site Malilink. Titré “Liste des Attaques Terroristes au Mali”, elle montre une liste de quatre (4) colonnes:</p>
+<ul>
+<li><p><code>No.</code> : une série incrémentée, similaire à un identifiant unique pour chaque évènement;</p></li>
+<li><p><code>Date</code>: simplement la date de l’évènement;</p></li>
+<li><p><code>Evenement/Attaque</code>: fournissant les détails de l’évènement;</p></li>
+<li><p><code>Victime</code> : donnant le nombre de victimes (morts et bléssés).</p></li>
+</ul>
+<p>A partir de ces colonnes de départ, de nouvelles ont été tirées. Y a été appliquée la simple règle suivante: chaque évènement est une unité/observation pour laquelle une colonne indique un attribut. Pour déterminer les colonnes a créer, des séries de questions ont été soulevées:</p>
+<ul>
+<li><p>Quand et où est-ce que l’évènement a eu lieu?</p></li>
+<li><p>Qui en était l’auteur?</p></li>
+<li><p>Qui en était la cible?</p></li>
+<li><p>Combien de victimes compte-t-on (morts et bléssés)?</p></li>
+<li><p>Qui savons-nous des victimes? Peuvent-elles être catégorisées?</p></li>
+</ul>
+<p>A partir de ces questions, il est apparu évident que la table de départ devrait être segmenté en morceaux. D’un part, il y aura des détails sur l’évènement et, de l’autre, des informations sur les victimes. De façon basique, nous aurons une relation de <em>one-to-many</em> (un-à-plusieur). Un évènement peut faire plusieurs victimes, mais une victime ne peut être associée qu’à un seul évènement (sauf s’il s’agit d’une personne particulièrement malchanceuse).</p>
+</div>
+<div id="les-nouveaux-gosses-de-la-rue" class="section level2">
+<h2>Les nouveaux gosses de la rue</h2>
+<p>Dans la première étape de transformation des données, j’ai tout simplement cherché à créer une grande matrice (<em>dataframe</em>, à proprement dire, si l’on peut identifier selon la classe de l’objet dans R), où toutes les informations pertinentes sur les incidents pourraient figurer. Ensuite, les colonnes qui se réfèrent aux même attributs ont été plus tard transformer en colonnes à part. Ce cas de figure a plus concerné les informations sur les victimes.</p>
+<p>Dans la <em>dataframe</em>, j’ai conservé les colonnes de départ.</p>
+<pre><code>## Observations: 607
+## Variables: 4
+## $ no_list &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16,...
+## $ date    &lt;dttm&gt; 2015-01-01, 2015-01-05, 2015-01-09, 2015-01-16, 2015-...
+## $ event   &lt;chr&gt; &quot;Attaque d&#39;un convoi civil à 37 km d’Andéranboukane su...
+## $ victims &lt;chr&gt; &quot;2 morts (dont le maire d’Andéranboukane)&quot;, &quot;10 morts ...</code></pre>
+<p>J’ai ajouté de nouvelles variables qui peuvent être catégorisées en cinq (5) groupes: le temps, l’espace, les détails additionnels sur les incidents, les victimes et les sources.</p>
+<div id="le-temps" class="section level3">
+<h3>Le temps</h3>
+<p>Dans ce groupe, j’ai juste décomposé les dates en jours, mois et années. A première vue, cette transformation semblait peu utile. Cependant, plus tard elle s’est avérée fort commode, surtout pour les agrégations.</p>
+<pre><code>## Observations: 607
+## Variables: 3
+## $ year  &lt;dbl&gt; 2015, 2015, 2015, 2015, 2015, 2015, 2015, 2015, 2015, 20...
+## $ month &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 3, 3, 3, 3,...
+## $ day   &lt;dbl&gt; 1, 5, 9, 16, 16, 17, 20, 25, 26, 27, 28, 31, 31, 14, 15,...</code></pre>
+</div>
+<div id="lespace" class="section level3">
+<h3>L’espace</h3>
+<p>J’ai ajouté ce groupe pour permettre la représentation cartographique des évènements et le calcul de statistiques basées sur les découpages administratifs. J’ai trouvé sur le site <em>United Nations Office for the Coordination of Humanitarian Affairs (OCHA)</em> les deux ressources qu’il me fallait pour ça:</p>
+<ul>
+<li>les <em><a href="https://data.humdata.org/dataset/administrative-boundaries-cod-mli">shapefiles</a></em> des différentes divisions administratives;</li>
+<li>les <a href="https://data.humdata.org/dataset/mali-settlements">coordinées</a> des localisations des incidents.</li>
+</ul>
+<p>Après un bout de temps, j’ai réalisé qu’il fallait deux sous-catégories à l’intérieur de cette catégorie: des points et des lignes. Pour les premiers, les détails sur les localisations étaient clairs. L’on connaissait les endroits (villes, villages, etc.) où les incidents avaient eu lieu. Une latitude et une longitude suffisaient pour placer les points sur une carte (et en venir au point que l’on veut…terrible jeu de mot, je sais). Pour les secondes par contre, le positionnement précis n’était pas possible. La plupart du temps, ces incidents concernaient des cibles mouvantes (véhicules de transport, par exemple) ou avaient lieu dans des lieux qui n’étaient pas bien connus. Pour éviter un choic arbitraire en ce qui concerne les véritables localisations, j’ai décidé d’utiliser les coordonnées des lieux connus entre lesquels ces incidents avaient eu lieu. De ce fait, j’ai fini avec des lignes plutôt qu’avec des points. J’ai essayé de m’aligner, autant que possible, sur les détails donnés dans le liste pour déterminer le point qui était le “départ” et celui qui était l’“arrivée”.</p>
+<p>De façon globale, j’ai ajouté six (6) variables:</p>
+<pre><code>## Observations: 607
+## Variables: 6
+## $ point_id     &lt;chr&gt; NA, &quot;40505000&quot;, &quot;80000000&quot;, &quot;50808000&quot;, &quot;70403016...
+## $ point        &lt;chr&gt; NA, &quot;Nampala&quot;, &quot;Kidal&quot;, &quot;Tenenkou&quot;, &quot;Tabankort&quot;, ...
+## $ departure_id &lt;dbl&gt; 70401000, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
+## $ departure    &lt;chr&gt; &quot;Andéranboukane&quot;, NA, NA, NA, NA, NA, NA, NA, NA,...
+## $ arrival_id   &lt;dbl&gt; 70400000, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
+## $ arrival      &lt;chr&gt; &quot;Ménaka&quot;, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...</code></pre>
+<p>Les variables avec le suffixe <em>id</em> se réfèrent aux codes utilisés dans les fichiers <em>OCHA</em>. Ils visaient à permettre la jointure de la <em>dataframe</em> avec les informations géographiques.</p>
+</div>
+<div id="details-additionnels-sur-les-incidents" class="section level3">
+<h3>Détails additionnels sur les incidents</h3>
+<p>J’ai aussi créeé quatre (4) variables relatives aux incidents:</p>
+<ul>
+<li><p>type: spécifiant si l’incident était une attaque, une confrontation inter-communautaires/inter-ethnique, ou d’une autre nature;</p></li>
+<li><p>armes: informant sur les armes utilisées, s’il y en a (armes à feu, mines, explosifs, etc.);</p></li>
+<li><p>auteur: indiquant le/les auteur(s) ou les parties impliquées;</p></li>
+<li><p>cible: indiquant les cibles ou les parties impliquées.</p></li>
+</ul>
+<p>Pour chacune de ces variables, j’ai suivi la description données dans la liste originale. Pendant ce processus, chaque fois que je suis tombée sur une situation ambigüe (phrasing difficile à comprendre, information manquante), j’ai choisi de m’en tenir à NA, <em>non available</em>.</p>
+<pre><code>## Observations: 607
+## Variables: 4
+## $ type_incident &lt;chr&gt; &quot;Attaque&quot;, &quot;Attaque&quot;, &quot;Attaque&quot;, &quot;Attaque&quot;, &quot;Aff...
+## $ weapon        &lt;chr&gt; &quot;ND&quot;, &quot;ND&quot;, &quot;Mine&quot;, &quot;ND&quot;, &quot;ND&quot;, &quot;Roquette&quot;, &quot;ND&quot;...
+## $ author        &lt;chr&gt; &quot;ND&quot;, &quot;ND&quot;, &quot;ND&quot;, &quot;ND&quot;, &quot;Rebelles/GATIA&quot;, &quot;ND&quot;, ...
+## $ target        &lt;chr&gt; &quot;Civil&quot;, &quot;AMA&quot;, &quot;MINUSMA&quot;, &quot;MIXTE&quot;, &quot;Rebelles/GA...</code></pre>
+</div>
+<div id="les-victimes" class="section level3">
+<h3>Les victimes</h3>
+<p>En ce qui concerne les victimes, la liste originale donnait le décomptait, presque chaque fois. De ce fait, il a été possible d’ajouter trois nouvelles variables: les morts, les bléssés, les victimes (somme des deux premières)</p>
+<pre><code>## Observations: 607
+## Variables: 3
+## $ nbr_dead    &lt;dbl&gt; 2, 10, 0, 3, 26, 1, 5, 3, 0, 3, 12, 12, 1, 7, 0, 5...
+## $ nbr_injured &lt;dbl&gt; 0, 0, 7, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, NA, 4, 9, 0...
+## $ nbr_victims &lt;dbl&gt; 2, 10, 7, 3, 26, 2, 5, 3, 1, 3, 12, 12, 1, 7, 4, 1...</code></pre>
+<p>Dans beaucoup de cas aussi, la liste donnait des informations sur l’identité des victimes, indiquant si elles étaient des civils (commerçant, voyageurs, éleveurs, agriculteurs, etc), membre d’une force armée (FAMA, MINUSMA, Barkhane), des officiels locaux (maires, chefs de village, etc) or membre d’un mouvement dans la région couverte. Pour traiter ces informations, j’ai créeé douze (12) nouvelles variables dans la grande <em>dataframe</em>.</p>
+<pre><code>## Observations: 607
+## Variables: 12
+## $ stat_dead_1     &lt;chr&gt; &quot;maire&quot;, &quot;soldat&quot;, NA...
+## $ count_dead_1    &lt;dbl&gt; 1, 8, NA, 2, 26, 1, 5...
+## $ stat_dead_2     &lt;chr&gt; &quot;ND&quot;, &quot;assaillant&quot;, N...
+## $ count_dead_2    &lt;dbl&gt; 1, 2, NA, 1, NA, NA, ...
+## $ stat_dead_3     &lt;chr&gt; NA, NA, NA, NA, NA, N...
+## $ count_dead_3    &lt;dbl&gt; NA, NA, NA, NA, NA, N...
+## $ stat_injured_1  &lt;chr&gt; NA, NA, &quot;casque bleu&quot;...
+## $ count_injured_1 &lt;dbl&gt; NA, NA, 7, NA, NA, 1,...
+## $ stat_injured_2  &lt;chr&gt; NA, NA, NA, NA, NA, N...
+## $ count_injured_2 &lt;dbl&gt; NA, NA, NA, NA, NA, N...
+## $ stat_injured_3  &lt;chr&gt; NA, NA, NA, NA, NA, N...
+## $ count_injured_3 &lt;dbl&gt; NA, NA, NA, NA, NA, N...</code></pre>
+<p>Les variables avec le préfixe <em>stat</em> donne le statut des victimes (civil, soldats, etc.), and celles avec le préfixe <em>count</em> indiquent leur nombre. J’ai aussi créeé des variable de contrôle (variables binaires: 1/0) pour vérifier que la somme des parts (par exemple <em>count_dead_1 + count_dead_2 + count_dead_3</em>) était égal au total (<em>nbr_dead</em>).</p>
+<pre><code>## Observations: 607
+## Variables: 2
+## $ check_dead    &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ...
+## $ check_injured &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ...</code></pre>
+<p>Après cette étape, j’avais presque fini. Tout ce qui restait à faire, c’était une simple opération de réorganisation pour avoir des données bien ordonnées (<em>tidy data</em>) sur les victimes. J’ai ajouté les identifiants de la liste originale pour - pour servir de clé étrangère en cas de jointure avec la liste - et les dates - pour permettre le calcul de statistiques basées sur le temps (sans avoir à faire des jointures avec la liste de base).</p>
+<pre><code>## Observations: 645
+## Variables: 6
+## $ no_list  &lt;dbl&gt; 1, 1, 10, 100, 102, 104, 104, 104, 105, 106, 106, 106...
+## $ date     &lt;dttm&gt; 2015-01-01, 2015-01-01, 2015-01-27, 2015-11-15, 2015...
+## $ category &lt;ord&gt; Morts, Morts, Morts, Morts, Blessés, Blessés, Morts, ...
+## $ status   &lt;chr&gt; &quot;maire&quot;, &quot;ND&quot;, &quot;ND&quot;, &quot;soldat&quot;, &quot;civil&quot;, &quot;civil&quot;, &quot;civ...
+## $ group    &lt;chr&gt; &quot;Civils&quot;, &quot;ND&quot;, &quot;ND&quot;, &quot;FAMA&quot;, &quot;Civils&quot;, &quot;Civils&quot;, &quot;Ci...
+## $ number   &lt;dbl&gt; 1, 1, 3, 1, 3, 7, 20, 2, 1, 20, 2, 1, 6, 4, 12, 1, 1,...</code></pre>
+</div>
+<div id="les-sources" class="section level3">
+<h3>Les sources</h3>
+<p>Cette catégorie, la dernière, n’était pas tant une partie de la transformation opérée qu’une provision pour le futur. J’avais remarquée que la liste n’incluait pas les sources. Je pense que cette addition est importante. Sa présence constituerait un signal fort en ce qui concerne la fiabilité des donnéese fournies dans la liste et, dans une certaine mesure, elle permettrait d’asseoir la crédibilité des projets comme celui-ci. A cette fin, j’ai ajouté trois (3) colonnes à remplir avec les liens vers des articles, des videos, ou même des podcast qui fourniraient ou confirmeraient les informations contenues dans la liste. Cette tache est au-délà du cadre de ce projet. Toutefois, je crois qu’elle peut aboutir avec des efforts collaboratifs de la part des différents contributeurs.</p>
+<pre><code>## Observations: 607
+## Variables: 6
+## $ source_1 &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N...
+## $ link_1   &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N...
+## $ source_2 &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N...
+## $ link_2   &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N...
+## $ source_3 &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N...
+## $ link_3   &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N...</code></pre>
+</div>
+</div>
+</div>
+<div id="ou-irons-nous-a-partir-dici" class="section level1">
+<h1>Où irons-nous à partir d’ici?</h1>
+<p>Je compte partager les résultats de l’analyse exploratoire de ce projet dans les posts à venir. Comme mentionné plus tôt, toutes les ressources peut être trouvées sur ma <a href="https://github.com/fousseynoubah/ssm">page GitHub</a>. Je ne sais pas exactement où je vais avec tout ça, mais j’espère que quelque chose de bon et d’utile en sortira.</p>
+</div>
+
+
+    
+      <h4>Traductions</h4>
+      <ul>
+        
+        <li>
+          <a href="/2018/05/security-incidents-in-mali-the-data/">en: Security incidents in Mali: the data</a>
+        </li>
+        
+      </ul>
+    
+
+    
+
+    <h4>Voir aussi</h4>
+    <ul>
+        
+            <li><a href="/fr/2018/05/probablement-au-dessus-de-ma-t%C3%AAte/">Probablement au-dessus de ma tête</a></li>
+        
+            <li><a href="/fr/1/01/incidents-s%C3%A9curitaires-au-mali-premi%C3%A8res-explorations-avec-la-visualisation/">Incidents sécuritaires au Mali: premières explorations avec la visualisation</a></li>
+        
+    </ul>
+
+
+</article>
+
+
+
+        </div>
+
+        <aside class="col-12 col-lg-3 ml-auto blog-sidebar">
+    
+        
+
+
+<section>
+    <h4>Publications récentes</h4>
+    <ol class="list-unstyled">
+        
+        <li>
+            <a href="/fr/2018/05/incidents-s%C3%A9curitaires-au-mali-les-donn%C3%A9es/">Incidents sécuritaires au Mali: les données</a>
+        </li>
+        
+        <li>
+            <a href="/fr/2018/05/probablement-au-dessus-de-ma-t%C3%AAte/">Probablement au-dessus de ma tête</a>
+        </li>
+        
+        <li>
+            <a href="/fr/2018/05/et-on-d%C3%A9marre/">Et on démarre</a>
+        </li>
+        
+        <li>
+            <a href="/fr/1/01/incidents-s%C3%A9curitaires-au-mali-premi%C3%A8res-explorations-avec-la-visualisation/">Incidents sécuritaires au Mali: premières explorations avec la visualisation</a>
+        </li>
+        
+        <li>
+            <a href="/fr/post/">Posts</a>
+        </li>
+        
+    </ol>
+</section>
+
+    
+    
+        <section>
+    
+        
+    
+        
+        <h4>Catégories</h4>
+        <p>
+            
+            <a class="badge badge-primary" href="/fr/categories/data">data</a>
+            
+            <a class="badge badge-primary" href="/fr/categories/introduction">introduction</a>
+            
+            <a class="badge badge-primary" href="/fr/categories/r">r</a>
+            
+        </p>
+        
+    
+        
+        <h4>Tags</h4>
+        <p>
+            
+            <a class="badge badge-primary" href="/fr/tags/data">data</a>
+            
+            <a class="badge badge-primary" href="/fr/tags/mali">mali</a>
+            
+            <a class="badge badge-primary" href="/fr/tags/qgis">qgis</a>
+            
+            <a class="badge badge-primary" href="/fr/tags/r">r</a>
+            
+            <a class="badge badge-primary" href="/fr/tags/r-markdown">r-markdown</a>
+            
+            <a class="badge badge-primary" href="/fr/tags/rmarkdown">rmarkdown</a>
+            
+            <a class="badge badge-primary" href="/fr/tags/security">security</a>
+            
+            <a class="badge badge-primary" href="/fr/tags/terrorism">terrorism</a>
+            
+            <a class="badge badge-primary" href="/fr/tags/threats">threats</a>
+            
+            <a class="badge badge-primary" href="/fr/tags/ubuntu">ubuntu</a>
+            
+        </p>
+        
+    
+</section>
+    
+</aside>
+
+      </div>
+    </div>
+    
+
+    
+      
+
+
+
+
+
+
+<footer class="blog-footer w-100">
+    <nav class="navbar navbar-light bg-light">
+        <p class="w-100 text-center"> </p>
+        <p class="w-100 text-center"><a href="#">Retour en haut de la page</a></p>
+    </nav>
+</footer>
+
+    
+
+    
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  </body>
+</html>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>R on jangui-wawi</title>
+    <link>/tags/r/</link>
+    <description>Recent content in R on jangui-wawi</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 03 May 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/r/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Here I go</title>
+      <link>/2018/05/here-i-go/</link>
+      <pubDate>Thu, 03 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/2018/05/here-i-go/</guid>
+      <description>I’m terrified as I write these words. Not because I’ve been summoned by Queen Cersei or because I’m fighting the White Walkers alongside Jon Snow. No. I wish I was, though. Ok, almost. I’m terrified because this is my first step in blogging. Few years back, when I was younger, I probably would’ve been care-free. But now, now that I know how much words matter, I tend to be cautious when talking or writing.</description>
+    </item>
+    
+  </channel>
+</rss>

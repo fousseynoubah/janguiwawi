@@ -1,0 +1,107 @@
+---
+title: Here I go
+author: Fousseynou Bah
+date: '2018-05-03'
+slug: here-i-go
+categories:
+  - R
+  - Introduction
+tags:
+  - R
+  - Ubuntu
+  - QGIS
+  - Rmarkdown
+---
+
+---
+title: Here I go
+author: Fousseynou Bah
+date: '2018-05-02'
+slug: here-i-go
+categories:
+  - R
+tags:
+  - R Markdown
+---
+
+I'm terrified as I write these words.
+Not because I've been summoned by Queen Cersei or because I'm fighting the White Walkers alongside Jon Snow.
+No.
+I wish I was, though. 
+Ok, almost.
+I'm terrified because this is my first step in blogging.
+Few years back, when I was younger, I probably would've been care-free.
+But now, now that I know how much words matter, I tend to be cautious when talking or writing.
+Once it's out there, it is out there.
+But that's no excuse.
+
+Few months back, I decided to test the waters with R.
+Up until then, I had been using [Stata](https://www.stata.com/).
+We had a steady relationship, but somewhere along the way we started to grow apart.
+Stata had newer, stronger, better versions released while I kept using the one I acquired during my graduate studies (late 2000's!).
+In truth, I stayed behind.
+Well, not entirely.
+I started to feel strongly about "open-source".
+Between my first encounter with Stata and our break-up, I came to discover the joys (and sometimes the tribulations) of open-source programs and systems.
+My heart keeps beating for [Ubuntu](https://www.ubuntu.com/), but for practicals reasons (working in a Windows-dominated environment), I have to postpone our reunion.
+We'll be together one day.
+One sweet day [a great song, by the way](https://www.youtube.com/watch?v=UXxRyNvTPr8).
+I also enjoyed my time with [QGIS](https://qgis.org/en/site/).
+For some time, it made feel like a God, a God of Maps.
+But outside the projects where I needed maps, we didn't hang out very much (after all, that's all it can do).
+And also, I found it hard to navigate between different programs (Stata there, QGIS here, a database there,...).
+With time, the distance between us grew wider.
+One thing, though. 
+I'm to blame, partially.
+I didn't bother to master SQL to skip the middle man (in this case, Stata), to access directly my databases from QGIS.
+Anyway...water under the bridge.
+
+My relationships with those tools had their on-and-off moments [like Ross and Rachel](https://www.youtube.com/watch?v=DQuAsShq68Q).
+Sure, I had my share of sleepless nights trying to figure out why my system was behaving strangely, or trying to take over a document created by a colleague under another system and with another program (imagine MS Office versus LibreOffice).
+But, overall, I got a glimpse of the possibilities that lie ahead.
+With the release of new versions on regular basis, the pace at which bugs are fixed, it seems like open-source stands and will remain among the forces the technological innovations [Thomas Friedman of New York times writes about those things so eloquently. More than I ever could. Go read him!](https://www.nytimes.com/column/thomas-l-friedman).
+And also, many of those programs and systems are free!
+And that is a practical reason that trumps all the other practical reasons.
+
+Back to R.
+Last year, I had a moment of...epiphany.
+Considering all the history I shared with Stata, the flings I had with Ubuntu and QGIS, and the better tomorrow I see in open-source (Ok, the *free* part played a major role, I admit it), I decided to take a leap, to switch to R.
+That meant rewriting countless lines of codes, scripts it's taken me years to write.
+But, most importantly, it meant learning a new language and understanding a new environment.
+I went online to get some tutorials.
+I got many for free, but I didn't have a structure, a methodology to ease my way into R and work my way up.
+Then, I found [DataCamp](http://datacamp.com/) (let me say this right away: they're not paying to say that!).
+I tried it, liked it and kept it.
+In few months I went through a huge track, *Data Science with R*.
+I took a break for few weeks, and started another one *Quantitative Analyst with R*.
+I'm still on it.
+Every once in while, I try some other courses outside my track (it's not what it looks like, it means nothing! I barely remember their names!).
+
+The whole experience has been eye-opening.
+All I can think to myself is why I didn't switch sooner.
+In fact, I could've because I had courses on R during my undergraduate studies.
+I didn't bother to attend because, well, I didn't think skipping them would hurt my grades (it did!), or that in the future I would work as a data analyst (as opposed the great *Professor of Internal Economics* I though I would become).
+Hey, better late than never. 
+Right?
+I found in R a place I think I want to call home for a very, very long time.
+And, in all honesty, [RStudio](https://www.rstudio.org/) has a lot to do with it (I'm not being paid by RStudio to say that!).
+I get to stay in one place and do a lot, from writing new scripts or translating old ones (from my Stata days - imagine when you have to pick up clothes from your ex's appartment. Akward!), to creating amazing graphs and maps with ggplot2 (sorry QGIS, R really does all I need), to writing reports or articles with Latex (Texmaker, we had a good run, didn't we?).
+And that's wonderful.
+
+And now, this blog.
+My switch to R came along with (or went from) a desire to experience or even be a part of what makes this time in history particular (well, in my humble opinion).
+And that is how connectivity is enabling us to share, to collaborate and to work collectivitely.
+That's a huge opportunity (for me, but I guess for many other people as well), one that I'm only starting to take the measure of.
+I am an African, born, raised and living in Africa.
+Being from that part of this world, where the challenges to overcome are countless, connectivity seems to offer one the most promising avenues to a better place.
+I've been able to learn new skills without having to put my life on hold, without having to travel to the West to attend a prestigious university (I wouldn't mind doing that, though. Just so you know).
+I simply had to go online and find what I was looking for.
+So I decided to stay online, to share my experience and to start new projects that, I hope, I'll get to collaborate with other people on.
+I also started this blog because, being a part of this century, this globalized and increasingly computerized world, standing on the sideline is not a choice, but a sentence.
+The pace of technological advancement is such that one can't afford to look away too long.
+And, luckily, we don't have to.
+Finally, with this blog, I'm trying here to overcome my fears.
+My fear of words, but also my fear of criticism.
+I have been fortunate to be a part of various projects.
+And, sometimes, I've been foolish enough to start few of my own.
+And now, I realize I have the opportunity to dust them off, share them with other people they might be useful to as well.
