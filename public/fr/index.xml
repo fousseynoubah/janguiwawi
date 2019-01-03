@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>jangui-wawi</title>
+    <title>jangui wawi</title>
     <link>/fr/</link>
-    <description>Recent content on jangui-wawi</description>
+    <description>Recent content on jangui wawi</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 16 May 2018 00:00:00 +0000</lastBuildDate>
@@ -46,24 +46,6 @@ Pas de raccourci pour apprendreQuand j’ai commencé à écrire ce post, j’�
       
       <guid>/fr/2018/05/et-on-d%C3%A9marre/</guid>
       <description>Pendant que j’écris ces mots, je suis terrifié. Pas parce que j’ai été sommé par la Reine Cersei ou parce que je livre une bataille aux Marcheurs Blancs aux côtés de Jon Snow. Non. J’aurais bien voulu. Ok, presque. Je suis terrifié parce que ceci est mon premier pas dans le blogging. Il y a quelques années, quand j’étais plus jeune, j’aurai probablement été serein. Mais maintenant, maintenant que je connais le poids des mots, j’ai tendance à être prudent quand je parle ou j’écris.</description>
-    </item>
-    
-    <item>
-      <title>About</title>
-      <link>/fr/about/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/fr/about/</guid>
-      <description>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec ex vel orci dapibus aliquam non in metus. Vestibulum posuere justo nunc, eu eleifend orci dignissim in. Vestibulum eu eros neque. Quisque luctus posuere sapien nec accumsan. Maecenas mattis, nisl ac dictum ultrices, ligula eros vehicula eros, vel fermentum diam erat eget dolor. Suspendisse vitae felis ligula. Integer quis tincidunt risus, convallis ullamcorper dui. Suspendisse potenti. Sed scelerisque volutpat leo, at mattis ipsum posuere nec.</description>
-    </item>
-    
-    <item>
-      <title>Contact</title>
-      <link>/fr/contact/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/fr/contact/</guid>
-      <description>Contact us!</description>
     </item>
     
   </channel>

@@ -1,5 +1,5 @@
-baseurl = "https://jangui-wawi.netlify.com"
-title = "jangui-wawi"
+baseurl = "https://jangui-wawi.netlify.com/"
+title = "jangui wawi"
 languageCode = "en-us"
 defaultContentLanguage = "en"
 
@@ -21,7 +21,7 @@ googleAnalytics = "UA-47268287-3"
   languageName = "English"
 
   # Replace the default footer message with a localized message
-   copyright = ""
+  # copyright = "Hugo template made with ❤ by Xzya"
 
   [[languages.en.menu.main]]
     url = "/"
@@ -45,7 +45,7 @@ googleAnalytics = "UA-47268287-3"
     weight = 1
   [[languages.fr.menu.main]]
     url = "/about/"
-    name = "A propos de"
+    name = "A propos"
     weight = 2
   [[languages.fr.menu.main]]
     url = "/contact/"
@@ -79,3 +79,11 @@ googleAnalytics = "UA-47268287-3"
 
     # How many posts to show on the sidebar (Default: 5)
     # num_recent_posts = 5
+
+  [params.header]
+    # Color scheme for the header (default: "light")
+    # colorScheme = "dark"
+
+#  [params.footer]
+    # Color scheme for the footer (default: "light")
+    # colorScheme = "dark"

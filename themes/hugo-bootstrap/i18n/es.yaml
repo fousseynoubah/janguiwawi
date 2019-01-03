@@ -26,4 +26,4 @@
   translation: "Idioma"
 
 - id: thanks
-  translation: " "
+  translation: "Plantilla de Hugo realizada con ❤ por {{.Xzya}}, inspirada en {{.HugoThemeBootstrap4Blog}}"

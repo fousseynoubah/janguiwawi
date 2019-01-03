@@ -1,2 +1,0 @@
-# janguiwawi
-Blog
