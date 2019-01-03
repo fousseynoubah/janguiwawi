@@ -3,25 +3,6 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>/es/about/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/about/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="de"
-                href="/de/about/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="es"
-                href="/es/about/"
-                />
-  </url>
-  
-  <url>
     <loc>/es/categories/</loc>
     <priority>0</priority>
     <xhtml:link
@@ -43,25 +24,6 @@
                 rel="alternate"
                 hreflang="es"
                 href="/es/categories/"
-                />
-  </url>
-  
-  <url>
-    <loc>/es/contact/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/contact/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="de"
-                href="/de/contact/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="es"
-                href="/es/contact/"
                 />
   </url>
   

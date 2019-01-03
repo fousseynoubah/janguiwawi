@@ -51,13 +51,8 @@
     <loc>/about/</loc>
     <xhtml:link
                 rel="alternate"
-                hreflang="es"
-                href="/es/about/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="de"
-                href="/de/about/"
+                hreflang="fr"
+                href="/fr/about/"
                 />
     <xhtml:link
                 rel="alternate"
@@ -95,18 +90,28 @@
     <loc>/contact/</loc>
     <xhtml:link
                 rel="alternate"
-                hreflang="es"
-                href="/es/contact/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="de"
-                href="/de/contact/"
+                hreflang="fr"
+                href="/fr/contact/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
                 href="/contact/"
+                />
+  </url>
+  
+  <url>
+    <loc>/categories/data/</loc>
+    <priority>0</priority>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="/fr/categories/data/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/categories/data/"
                 />
   </url>
   
@@ -123,21 +128,6 @@
                 rel="alternate"
                 hreflang="en"
                 href="/tags/data/"
-                />
-  </url>
-  
-  <url>
-    <loc>/categories/data/</loc>
-    <priority>0</priority>
-    <xhtml:link
-                rel="alternate"
-                hreflang="fr"
-                href="/fr/categories/data/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/categories/data/"
                 />
   </url>
   
@@ -206,22 +196,6 @@
   </url>
   
   <url>
-    <loc>/tags/r/</loc>
-    <lastmod>2018-05-03T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-    <xhtml:link
-                rel="alternate"
-                hreflang="fr"
-                href="/fr/tags/r/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/tags/r/"
-                />
-  </url>
-  
-  <url>
     <loc>/categories/r/</loc>
     <lastmod>2018-05-10T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -234,6 +208,22 @@
                 rel="alternate"
                 hreflang="en"
                 href="/categories/r/"
+                />
+  </url>
+  
+  <url>
+    <loc>/tags/r/</loc>
+    <lastmod>2018-05-03T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="/fr/tags/r/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/tags/r/"
                 />
   </url>
   
