@@ -1,7 +1,7 @@
 ---
 title: 'Incidents sécuritaires au Mali: premières explorations avec la visualisation'
 author: Fousseynou Bah
-date: '2018-05-16 (mise à jour le 2018-12-27)'
+date: '2018-05-16'
 categories:
   - data
   - R
@@ -15,6 +15,8 @@ tags:
 slug: security-incidents-in-mali-the-incidents
 ---
 
+*Cette version de l'article est une édition de l'originale.*
+*Elle date du 2018-12-27.*
 
 ```{r setup, include=FALSE}
 #knitr::opts_chunk$set(echo = FALSE)

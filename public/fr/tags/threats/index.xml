@@ -6,10 +6,20 @@
     <description>Recent content in Threats on jangui-wawi</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 10 May 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 16 May 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/fr/tags/threats/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Incidents sécuritaires au Mali: premières explorations avec la visualisation</title>
+      <link>/fr/2018/05/incidents-s%C3%A9curitaires-au-mali-premi%C3%A8res-explorations-avec-la-visualisation/</link>
+      <pubDate>Wed, 16 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/fr/2018/05/incidents-s%C3%A9curitaires-au-mali-premi%C3%A8res-explorations-avec-la-visualisation/</guid>
+      <description>Cette version de l’article est une édition de l’originale. Elle date du 2018-12-27.
+Pas de raccourci pour apprendreQuand j’ai commencé à écrire ce post, j’étais très confiant dans le fait que ce serait rapide. Après tout, j’avais toutes les ressources nécessaires à ma disposition, un tas de codes que j’avais passé des mois à écrire. C’était censé être une affaire de copier-coller. J’avais tort. Vous voyez, encore une fois, j’ai sous-estimé le pouvoir du monstre en moi que je veux toujours bien faire les choses tout le temps.</description>
+    </item>
     
     <item>
       <title>Incidents sécuritaires au Mali: les données</title>
@@ -27,15 +37,6 @@
       
       <guid>/fr/2018/05/probablement-au-dessus-de-ma-t%C3%AAte/</guid>
       <description>L’année dernière, je me suis lié d’amitié avec une nouvelle personne. Elle (c’est une personne et une fille) m’a fait découvrir Kaggle. Je n’avais aucune idée de ce que c’était. Elle était amusée, et moi légèrement embarassé. Moi qui me pensais si contemporain, si mondain, si informé de ce qui se passe ci et là (oui, je me perds souvent une folie de grandeur dans ma tête) ne savait rien de ce qu’était Kaggle.</description>
-    </item>
-    
-    <item>
-      <title>Incidents sécuritaires au Mali: premières explorations avec la visualisation</title>
-      <link>/fr/1/01/incidents-s%C3%A9curitaires-au-mali-premi%C3%A8res-explorations-avec-la-visualisation/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/fr/1/01/incidents-s%C3%A9curitaires-au-mali-premi%C3%A8res-explorations-avec-la-visualisation/</guid>
-      <description>Pas de raccourci pour apprendreQuand j’ai commencé à écrire ce post, j’étais très confiant dans le fait que ce serait rapide. Après tout, j’avais toutes les ressources nécessaires à ma disposition, un tas de codes que j’avais passé des mois à écrire. C’était censé être une affaire de copier-coller. J’avais tort. Vous voyez, encore une fois, j’ai sous-estimé le pouvoir du monstre en moi que je veux toujours bien faire les choses tout le temps.</description>
     </item>
     
   </channel>

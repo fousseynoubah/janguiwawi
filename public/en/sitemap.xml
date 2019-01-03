@@ -3,6 +3,21 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/2018/05/security-incidents-in-mali-diving-in-with-visualization/</loc>
+    <lastmod>2018-05-16T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="/fr/2018/05/incidents-s%C3%A9curitaires-au-mali-premi%C3%A8res-explorations-avec-la-visualisation/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/2018/05/security-incidents-in-mali-diving-in-with-visualization/"
+                />
+  </url>
+  
+  <url>
     <loc>/2018/05/security-incidents-in-mali-the-data/</loc>
     <lastmod>2018-05-10T00:00:00+00:00</lastmod>
     <xhtml:link
@@ -66,16 +81,6 @@
     <priority>0</priority>
     <xhtml:link
                 rel="alternate"
-                hreflang="es"
-                href="/es/categories/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="de"
-                href="/de/categories/"
-                />
-    <xhtml:link
-                rel="alternate"
                 hreflang="fr"
                 href="/fr/categories/"
                 />
@@ -101,23 +106,8 @@
   </url>
   
   <url>
-    <loc>/categories/data/</loc>
-    <priority>0</priority>
-    <xhtml:link
-                rel="alternate"
-                hreflang="fr"
-                href="/fr/categories/data/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/categories/data/"
-                />
-  </url>
-  
-  <url>
     <loc>/tags/data/</loc>
-    <lastmod>2018-05-10T00:00:00+00:00</lastmod>
+    <lastmod>2018-05-16T00:00:00+00:00</lastmod>
     <priority>0</priority>
     <xhtml:link
                 rel="alternate"
@@ -128,6 +118,22 @@
                 rel="alternate"
                 hreflang="en"
                 href="/tags/data/"
+                />
+  </url>
+  
+  <url>
+    <loc>/categories/data/</loc>
+    <lastmod>2018-05-16T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="/fr/categories/data/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/categories/data/"
                 />
   </url>
   
@@ -149,7 +155,7 @@
   
   <url>
     <loc>/tags/mali/</loc>
-    <lastmod>2018-05-10T00:00:00+00:00</lastmod>
+    <lastmod>2018-05-16T00:00:00+00:00</lastmod>
     <priority>0</priority>
     <xhtml:link
                 rel="alternate"
@@ -165,7 +171,7 @@
   
   <url>
     <loc>/post/</loc>
-    <lastmod>2018-05-10T00:00:00+00:00</lastmod>
+    <lastmod>2018-05-16T00:00:00+00:00</lastmod>
     <priority>0</priority>
     <xhtml:link
                 rel="alternate"
@@ -196,22 +202,6 @@
   </url>
   
   <url>
-    <loc>/categories/r/</loc>
-    <lastmod>2018-05-10T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-    <xhtml:link
-                rel="alternate"
-                hreflang="fr"
-                href="/fr/categories/r/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/categories/r/"
-                />
-  </url>
-  
-  <url>
     <loc>/tags/r/</loc>
     <lastmod>2018-05-03T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -228,8 +218,24 @@
   </url>
   
   <url>
+    <loc>/categories/r/</loc>
+    <lastmod>2018-05-16T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="/fr/categories/r/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/categories/r/"
+                />
+  </url>
+  
+  <url>
     <loc>/tags/r-markdown/</loc>
-    <lastmod>2018-05-04T00:00:00+00:00</lastmod>
+    <lastmod>2018-05-16T00:00:00+00:00</lastmod>
     <priority>0</priority>
     <xhtml:link
                 rel="alternate"
@@ -261,7 +267,7 @@
   
   <url>
     <loc>/tags/security/</loc>
-    <lastmod>2018-05-10T00:00:00+00:00</lastmod>
+    <lastmod>2018-05-16T00:00:00+00:00</lastmod>
     <priority>0</priority>
     <xhtml:link
                 rel="alternate"
@@ -276,33 +282,9 @@
   </url>
   
   <url>
-    <loc>/1/01/security-incidents-in-mali-diving-in-with-visualization/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="fr"
-                href="/fr/1/01/incidents-s%C3%A9curitaires-au-mali-premi%C3%A8res-explorations-avec-la-visualisation/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/1/01/security-incidents-in-mali-diving-in-with-visualization/"
-                />
-  </url>
-  
-  <url>
     <loc>/tags/</loc>
-    <lastmod>2018-05-10T00:00:00+00:00</lastmod>
+    <lastmod>2018-05-16T00:00:00+00:00</lastmod>
     <priority>0</priority>
-    <xhtml:link
-                rel="alternate"
-                hreflang="es"
-                href="/es/tags/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="de"
-                href="/de/tags/"
-                />
     <xhtml:link
                 rel="alternate"
                 hreflang="fr"
@@ -317,7 +299,7 @@
   
   <url>
     <loc>/tags/terrorism/</loc>
-    <lastmod>2018-05-10T00:00:00+00:00</lastmod>
+    <lastmod>2018-05-16T00:00:00+00:00</lastmod>
     <priority>0</priority>
     <xhtml:link
                 rel="alternate"
@@ -333,7 +315,7 @@
   
   <url>
     <loc>/tags/threats/</loc>
-    <lastmod>2018-05-10T00:00:00+00:00</lastmod>
+    <lastmod>2018-05-16T00:00:00+00:00</lastmod>
     <priority>0</priority>
     <xhtml:link
                 rel="alternate"
@@ -350,16 +332,6 @@
   <url>
     <loc>/ua-47268287-3/</loc>
     <priority>0</priority>
-    <xhtml:link
-                rel="alternate"
-                hreflang="es"
-                href="/es/ua-47268287-3/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="de"
-                href="/de/ua-47268287-3/"
-                />
     <xhtml:link
                 rel="alternate"
                 hreflang="fr"
@@ -390,18 +362,8 @@
   
   <url>
     <loc>/</loc>
-    <lastmod>2018-05-10T00:00:00+00:00</lastmod>
+    <lastmod>2018-05-16T00:00:00+00:00</lastmod>
     <priority>0</priority>
-    <xhtml:link
-                rel="alternate"
-                hreflang="es"
-                href="/es/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="de"
-                href="/de/"
-                />
     <xhtml:link
                 rel="alternate"
                 hreflang="fr"

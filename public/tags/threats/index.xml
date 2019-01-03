@@ -6,10 +6,20 @@
     <description>Recent content in Threats on jangui-wawi</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 10 May 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 16 May 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/threats/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Security incidents in Mali: diving in with visualization</title>
+      <link>/2018/05/security-incidents-in-mali-diving-in-with-visualization/</link>
+      <pubDate>Wed, 16 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/2018/05/security-incidents-in-mali-diving-in-with-visualization/</guid>
+      <description>This version of the post is a reedition of the original. It dates from 2018-12-27.
+No shortcut to learningWhen I started writing this post, I was fairly confident it would be quick. After all, I had all the materials I needed, a bunch of scripts I had spent months writing. It was supposed to be a matter of copy-and-paste. I was wrong. You see, once again, I underestimated the power of the monster in me who wants to get it right all the time.</description>
+    </item>
     
     <item>
       <title>Security incidents in Mali: the data</title>
@@ -27,15 +37,6 @@
       
       <guid>/2018/05/probably-over-my-head/</guid>
       <description>Last year, I made a new friend. She (yes, it’s a “she”) introduced me to Kaggle. I had no idea what that was. She was amused, and I slightly embarrassed. I, who think of myself as a worldly man, modern, aware of what happening here and there (yes, I get sometimes caught up a delusion of grandeur in my head), had no clue what Kaggle was. She proposed that we train together to enter a competition.</description>
-    </item>
-    
-    <item>
-      <title>Security incidents in Mali: diving in with visualization</title>
-      <link>/1/01/security-incidents-in-mali-diving-in-with-visualization/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/1/01/security-incidents-in-mali-diving-in-with-visualization/</guid>
-      <description>No shortcut to learningWhen I started writing this post, I was fairly confident it would be quick. After all, I had all the materials I needed, a bunch of scripts I had spent months writing. It was supposed to be a matter of copy-and-paste. I was wrong. You see, once again, I underestimated the power of the monster in me who wants to get it right all the time.</description>
     </item>
     
   </channel>

@@ -36,38 +36,6 @@ googleAnalytics = "UA-47268287-3"
     name = "Contact"
     weight = 3
 
-[languages.es]
-  languageName = "Español"
-
-  [[languages.es.menu.main]]
-    url = "/es/"
-    name = "Casa"
-    weight = 1
-  [[languages.es.menu.main]]
-    url = "/about/"
-    name = "Acerca de"
-    weight = 2
-  [[languages.es.menu.main]]
-    url = "/contact/"
-    name = "Contacto"
-    weight = 3
-
-[languages.de]
-  languageName = "Deutsch"
-
-  [[languages.de.menu.main]]
-    url = "/de/"
-    name = "Start"
-    weight = 1
-  [[languages.de.menu.main]]
-    url = "/about/"
-    name = "Über uns"
-    weight = 2
-  [[languages.de.menu.main]]
-    url = "/contact/"
-    name = "Kontakt"
-    weight = 3
-
 [languages.fr]
   languageName = "Français"
 
