@@ -272,7 +272,7 @@ The following map shows, for each known location, the number of incidents by yea
 
 
 <div>
-<iframe width="700" height="700" scrolling="yes" frameborder="0"  src="http://18.219.213.81:3838/ssm5_en/"> </iframe>
+<iframe width="700" height="700" scrolling="yes" frameborder="0"  src="https://18.219.213.81/ssm5_fr/"> </iframe>
 </div>
 
 Looking at the points on the map, one can start to make out the areas that are affected the most by the incidents - depending on the type and the year of interest.
@@ -284,7 +284,7 @@ Let's consider the region.
 Due to the small number (8 regions + 1 district), that is the level that lends itself the best to visualisation.
 
 <div>
-<iframe width="700" height="700" scrolling="yes" frameborder="0"  src="http://18.219.213.81:3838/ssm6_en/"> </iframe>
+<iframe width="700" height="700" scrolling="yes" frameborder="0"  src="https://18.219.213.81/ssm6_fr/"> </iframe>
 </div>
 
 The second method consists of a visual approach, rather than a arithmetic one.
@@ -292,7 +292,7 @@ We'll use the function `stat_density2d` function of the `ggplot2` package.
 Through a two dimensionnal density, we'll be able to get a glimpse of the hotspots.
 
 <div>
-<iframe width="700" height="700" scrolling="yes" frameborder="0"  src="http://18.219.213.81:3838/ssm7_en/"> </iframe>
+<iframe width="700" height="700" scrolling="yes" frameborder="0"  src="https://18.219.213.81/ssm7_fr/"> </iframe>
 </div>
 
 

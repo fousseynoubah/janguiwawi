@@ -98,18 +98,18 @@ runtime: shiny
 <p>Ici, nous allons visualiser la sévérité à travers le territoire national. Dans les articles précédents, j’ai distingués deux types d’incidents: ceux des points et ceux des lignes. Dans le premier groupe se trouve les incidents pour lesquels les endroit sont clairement indiqués, les coordonnées bien connues. Ce groupe représente environ 85.9% des observations (676 sur 700 incidents recensés). Dans le second groupe, toutefois, nous avons seulement des indications vagues, principalement deux points entre lesquels les incidents ont eu lieu. Pour le moment, concentrons sur le premier groupe.</p>
 <p>La carte ci-dessous montre, pour chaque lieu connu, le nombre d’incidents par année et par sévérité.</p>
 <div>
-<iframe width="700" height="700" scrolling="yes" frameborder="0" src="http://18.219.213.81:3838/ssm5_fr/">
+<iframe width="700" height="700" scrolling="yes" frameborder="0" src="https://18.219.213.81/ssm5_fr/">
 </iframe>
 </div>
 <p>En regardant les points sur la carte, l’on commence à se faire une idées des zones qui sont les plus affectées par les incidents - selon le type et l’année d’intérêt. D’aucun peut souhaiter avec une meilleur idée en synthétisant l’information. Nous allons explorer deux méthodes.</p>
 <p>En premier lieu, nous allons simplement agréger le nombre d’incidents par divisions administratives. Considérons les régions. De par leur faible nombre (8 régions + 1 district), ceci est le niveau qui se prête le mieux à la visualisation.</p>
 <div>
-<iframe width="700" height="700" scrolling="yes" frameborder="0" src="http://18.219.213.81:3838/ssm6_fr/">
+<iframe width="700" height="700" scrolling="yes" frameborder="0" src="https://18.219.213.81/ssm6_fr/">
 </iframe>
 </div>
 <p>La deuxième méthode consiste en une approche visuelle plutôt qu’arithmétique. Nous allons utiliser la fonction <code>stat_density2d</code> du package <code>ggplot2</code>. A travers une density bidimensielle, nous obtiendrons un aperçu des points chauds.</p>
 <div>
-<iframe width="700" height="700" scrolling="yes" frameborder="0" src="http://18.219.213.81:3838/ssm7_fr/">
+<iframe width="700" height="700" scrolling="yes" frameborder="0" src="https://18.219.213.81/ssm7_fr/">
 </iframe>
 </div>
 <p><em>Comme pour tous les articles, celui-ci est - est risque de rester pendant longtemps - un travail en cours.</em> <em>Je crois en encore et toujours aux données, au pouvoir du savoir, et dans sa capacité à transformer les monde pour le meilleur.</em></p>
