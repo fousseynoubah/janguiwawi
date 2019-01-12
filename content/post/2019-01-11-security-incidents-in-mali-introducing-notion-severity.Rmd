@@ -22,7 +22,7 @@ runtime: shiny
 *This a rewrite of an article originally titled "Security incidents in Mali: mapping the hotspots" and posted on 2018/06/08.*
 
 
-```{r setup,include=TRUE, message=FALSE,warning=FALSE, echo=FALSE}
+```{r setup,include=TRUE,message=FALSE,warning=FALSE, echo=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 
 ##########################################################################
@@ -141,7 +141,7 @@ df_severity %>%
 The graph above shows that the number of incidents has been consistantly increasing since the beginning of 2017.
 Let's take a simple look at the table below to confirm:
 
-```{r }
+```{r message=FALSE,warning=FALSE}
 
 df_severity %>% 
   group_by(year, id) %>%
