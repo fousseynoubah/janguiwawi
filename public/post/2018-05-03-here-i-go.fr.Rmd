@@ -13,17 +13,6 @@ tags:
 slug: here-i-go
 ---
 
----
-title: Here I go
-author: Fousseynou Bah
-date: '2018-05-02'
-slug: here-i-go
-categories:
-  - R
-tags:
-  - R Markdown
----
-
 Pendant que j'écris ces mots, je suis terrifié.
 Pas parce que j'ai été sommé par la Reine Cersei ou parce que je livre une bataille aux Marcheurs Blancs aux côtés de Jon Snow.
 Non.

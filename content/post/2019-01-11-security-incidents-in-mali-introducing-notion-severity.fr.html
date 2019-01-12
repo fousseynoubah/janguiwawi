@@ -1,0 +1,119 @@
+---
+title: 'Incidents sécuritaires au Mali: la notion de sévérité'
+author: Fousseynou Bah
+date: '2019-01-11'
+categories:
+  - Mali
+  - sécurité
+tags:
+  - Mali
+  - sécurité
+  - incidents
+  - attaques
+  - terrorisme
+  - menaces
+  - ggplot2
+  - shiny
+  - Malilink
+slug: security-incidents-in-mali-introducing-notion-severity
+runtime: shiny
+---
+
+
+
+<p><em>Ceci est une réédition du post intitulé “Security incidents in Mali: mapping the hotspots” et datant du 2018-06/08.</em></p>
+<p>Dans cet article, je continue d’explorer les données sur la situation sécuritaire au Mali, tirées cette <a href="http://malilink.net/attaques-terroriste-au-mali/">page du site de Malilink</a>. Ici, j’introduis la notion de <em>sévérité</em> parce qu’il m’a paru utile de rappeler que les incidents ne s’équivalent pas tous. Certaines, bien que malheureuses, laissent leurs victimes avec plus de souvenirs désagréables que de blessures (vol par exemple). D’autres, par contre, sont dévstatrices de par leur nature meurtrière (explosions, attaques à arme à feu, etc.). Pour prendre celà en compte, j’ai pensé intéréssant de créer une variable catégorielle qui servirait de paramètre d’analyse. D’où la notion de <em>sévérité</em>. Nous lui donnerons quatre (4) valeurs</p>
+<ul>
+<li><p>1: mort(s), bléssé(s) ;</p></li>
+<li><p>2: mort(s), pas de bléssé(s) ;</p></li>
+<li><p>3: pas de mort(s), bléssé(s) ;</p></li>
+<li><p>4: pas de mort(s), pas de bléssé(s).</p></li>
+</ul>
+<p>Il peut être soutenu - et avec mérite - que cette variable peut souffrir de biais. Certes! Pour sa défense, toutefois, il faut indiquer que ce biais peut être attribuer à la nature même de l’information fournie.</p>
+<p>Souvent, le nombre de victimes n’est pas connu sur le champ. Il apparait seulement plus tard, parfois bien longtemps après que l’incident ait été annoncé dans la presse, et que l’attention ait été portée sur d’autres évènements. Par exemple, certaines entrées de la liste indique <em>plusieurs bléssés</em> sans donner aucune précision. Dans de tels cas, l’incident tombe dans la deuxième ou quatrième catégorie, tout simplement parce qu’on ne connait pas le véritable nombre, par parce qu’il n’y avait pas de bléssé. D’autres fois, les victimes peuvent succomber à leurs blessures. Dans de tels cas, un incident de la troisième catégorie basculerai dans la première, et un incident de la quatrième dans la deuxième. Malheuresement, c’est très difficile (presqu’impossible) de connaître tous ces détails dans on saisit un incident dans la liste. Donc, retenons à l’esprit que ce que nous verront des données - en ce qui concerne les victimes - est basée sur l’impact immédiat, pas l’impact à long terme.</p>
+<p>Avec tout celà dit, regardons maintenant les incidents à travers cette nouvelle variable.</p>
+<div id="section-reprenser-les-incidents-sur-la-base-de-leur-severite" class="section level2">
+<h2>Reprenser les incidents sur la base de leur sévérité</h2>
+<p><img src="/post/2019-01-11-security-incidents-in-mali-introducing-notion-severity.fr_files/figure-html/incidents_gph1-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>Le graphique ci-dessus montre que le nombre d’incident a augmenté de façon soutenue depuis le début de l’année 2017. Regardons tout simplement la table ci-dessous pour confirmer:</p>
+<pre><code>## Warning in kableExtra::kable_styling(., bootstrap_options = c(&quot;striped&quot;, :
+## Please specify format in kable. kableExtra can customize either HTML or
+## LaTeX outputs. See https://haozhu233.github.io/kableExtra/ for details.</code></pre>
+<table>
+<caption><span id="tab:unnamed-chunk-1">Table 1: </span>Incidents, by sévérité and par an, (Jan 2015 - Jun 2018)</caption>
+<thead>
+<tr class="header">
+<th align="left">Sévérité</th>
+<th align="right">2015</th>
+<th align="right">2016</th>
+<th align="right">2017</th>
+<th align="right">2018</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Morts, Bléssés</td>
+<td align="right">26</td>
+<td align="right">46</td>
+<td align="right">63</td>
+<td align="right">33</td>
+</tr>
+<tr class="even">
+<td align="left">Morts, Pas de bléssés</td>
+<td align="right">51</td>
+<td align="right">36</td>
+<td align="right">65</td>
+<td align="right">65</td>
+</tr>
+<tr class="odd">
+<td align="left">Pas de morts, Bléssés</td>
+<td align="right">15</td>
+<td align="right">21</td>
+<td align="right">33</td>
+<td align="right">17</td>
+</tr>
+<tr class="even">
+<td align="left">Pas de morts, Pas de bléssés</td>
+<td align="right">28</td>
+<td align="right">54</td>
+<td align="right">69</td>
+<td align="right">78</td>
+</tr>
+<tr class="odd">
+<td align="left">Total</td>
+<td align="right">120</td>
+<td align="right">157</td>
+<td align="right">230</td>
+<td align="right">193</td>
+</tr>
+</tbody>
+</table>
+<p>En 2017, la situation s’est dégradée par rapport à 2015 et 2016. Sur la base des comptes, 2018 n’a pas montré de signes d’amélioration par rapport aux trois années précédentes. Au contraire! En moins de six mois, le nombre d’incidents a atteint un niveau qui dépasse le total d’auss bien de 2015 que de 2016.</p>
+<p>Traduisons ces chiffres en graphiques qui se lisent en termes de proportions.</p>
+<p><img src="/post/2019-01-11-security-incidents-in-mali-introducing-notion-severity.fr_files/figure-html/incidents_gph2-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>Quand on considère les proportions, la structure des incidents se révèle assez surprenante. En 2015, environ deux tiers de incidents causaient des pertes en vies humaines. L’année suivante a affiché une meilleure situation. En 2018, la part est restée en dessous de 50% (jusque là - dans la limite des données traitées). Toutefois, celà ne signifie pas qu’il y a eu moins de morts en 2018. C’est tout le contraire, comme nous l’avons vu dans un <a href="https://jangui-wawi.netlify.com/fr/2018/05/incidents-sécuritaires-au-mali-premières-explorations-avec-la-visualisation/">article précédent</a>. Le fait que la part des incidents non-meurtriers (dans la mesure de ce que nous savons) ait augmenté peut être lié au biais de comptabilisation (le même genre dont nous avons parlé ci-haut, qui conduit à une mauvais comptage ou à une mauvaise classificiation des victimes). C’est possible que maintenant les incidents soient rapportés plus qu’avant, auquel cas mêmes ceux qui ne font pas de mort sont portés sur la liste. Je ne peux pas soutenir cette explication sur la base des données (j’avoue en toute honnêteté), mais étant donné que nous sommes dans une saison politique (élection présidentielle récemment tenue et élections législatives en vue), c’est possible que les gens soient plus attentifs.</p>
+<p>Maintenant, regardons les tendances pour pousser notre observation.</p>
+<p><img src="/post/2019-01-11-security-incidents-in-mali-introducing-notion-severity.fr_files/figure-html/incidents_gph3-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>Les graphiques montrent que la situation est critique. Et, sur la base des pentes montantes, elle s’empire depuis un bout de temps. A savoir si les choses vont rester telles quelles ou changer dans le futur proche ou distant est une question qui dépasse le cadre de cet article. Toutefois, restons optimistes!</p>
+</div>
+<div id="section-ajout-de-la-dimension-spatiale" class="section level2">
+<h2>Ajout de la dimension spatiale</h2>
+<p>Ici, nous allons visualiser la sévérité à travers le territoire national. Dans les articles précédents, j’ai distingués deux types d’incidents: ceux des points et ceux des lignes. Dans le premier groupe se trouve les incidents pour lesquels les endroit sont clairement indiqués, les coordonnées bien connues. Ce groupe représente environ 85.9% des observations (676 sur 700 incidents recensés). Dans le second groupe, toutefois, nous avons seulement des indications vagues, principalement deux points entre lesquels les incidents ont eu lieu. Pour le moment, concentrons sur le premier groupe.</p>
+<p>La carte ci-dessous montre, pour chaque lieu connu, le nombre d’incidents par année et par sévérité.</p>
+<div>
+<iframe width="700" height="700" scrolling="yes" frameborder="0" src="http://18.219.213.81:3838/ssm5_fr/">
+</iframe>
+</div>
+<p>En regardant les points sur la carte, l’on commence à se faire une idées des zones qui sont les plus affectées par les incidents - selon le type et l’année d’intérêt. D’aucun peut souhaiter avec une meilleur idée en synthétisant l’information. Nous allons explorer deux méthodes.</p>
+<p>En premier lieu, nous allons simplement agréger le nombre d’incidents par divisions administratives. Considérons les régions. De par leur faible nombre (8 régions + 1 district), ceci est le niveau qui se prête le mieux à la visualisation.</p>
+<div>
+<iframe width="700" height="700" scrolling="yes" frameborder="0" src="http://18.219.213.81:3838/ssm6_fr/">
+</iframe>
+</div>
+<p>La deuxième méthode consiste en une approche visuelle plutôt qu’arithmétique. Nous allons utiliser la fonction <code>stat_density2d</code> du package <code>ggplot2</code>. A travers une density bidimensielle, nous obtiendrons un aperçu des points chauds.</p>
+<div>
+<iframe width="700" height="700" scrolling="yes" frameborder="0" src="http://18.219.213.81:3838/ssm7_fr/">
+</iframe>
+</div>
+<p><em>Comme pour tous les articles, celui-ci est - est risque de rester pendant longtemps - un travail en cours.</em> <em>Je crois en encore et toujours aux données, au pouvoir du savoir, et dans sa capacité à transformer les monde pour le meilleur.</em></p>
+</div>

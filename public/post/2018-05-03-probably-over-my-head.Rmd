@@ -3,14 +3,15 @@ title: Probably over my head
 author: Fousseynou Bah
 date: '2018-05-04'
 categories:
-  - R
+  - Mali
+  - security
 tags:
-  - data
   - Mali
   - R Markdown
   - security
   - terrorism
   - threats
+  - Malilink
 slug: probably-over-my-head
 ---
 

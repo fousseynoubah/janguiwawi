@@ -11,15 +11,6 @@
     
     
     <item>
-      <title>Data</title>
-      <link>/fr/categories/data/</link>
-      <pubDate>Wed, 16 May 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/fr/categories/data/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Introduction</title>
       <link>/fr/categories/introduction/</link>
       <pubDate>Thu, 03 May 2018 00:00:00 +0000</pubDate>
@@ -29,11 +20,38 @@
     </item>
     
     <item>
+      <title>Mali</title>
+      <link>/fr/categories/mali/</link>
+      <pubDate>Fri, 11 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/fr/categories/mali/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>R</title>
       <link>/fr/categories/r/</link>
-      <pubDate>Wed, 16 May 2018 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 03 May 2018 00:00:00 +0000</pubDate>
       
       <guid>/fr/categories/r/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Security</title>
+      <link>/fr/categories/security/</link>
+      <pubDate>Wed, 16 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/fr/categories/security/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Sécurité</title>
+      <link>/fr/categories/s%C3%A9curit%C3%A9/</link>
+      <pubDate>Fri, 11 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/fr/categories/s%C3%A9curit%C3%A9/</guid>
       <description></description>
     </item>
     

@@ -11,15 +11,6 @@
     
     
     <item>
-      <title>Data</title>
-      <link>/categories/data/</link>
-      <pubDate>Wed, 16 May 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/categories/data/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Introduction</title>
       <link>/categories/introduction/</link>
       <pubDate>Thu, 03 May 2018 00:00:00 +0000</pubDate>
@@ -29,11 +20,29 @@
     </item>
     
     <item>
+      <title>Mali</title>
+      <link>/categories/mali/</link>
+      <pubDate>Fri, 11 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/categories/mali/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>R</title>
       <link>/categories/r/</link>
-      <pubDate>Wed, 16 May 2018 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 03 May 2018 00:00:00 +0000</pubDate>
       
       <guid>/categories/r/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Security</title>
+      <link>/categories/security/</link>
+      <pubDate>Fri, 11 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/categories/security/</guid>
       <description></description>
     </item>
     

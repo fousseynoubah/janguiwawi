@@ -2,7 +2,6 @@
 title: Here I go
 author: Fousseynou Bah
 date: '2018-05-03'
-slug: here-i-go
 categories:
   - R
   - Introduction
@@ -11,17 +10,7 @@ tags:
   - Ubuntu
   - QGIS
   - Rmarkdown
----
-
----
-title: Here I go
-author: Fousseynou Bah
-date: '2018-05-02'
 slug: here-i-go
-categories:
-  - R
-tags:
-  - R Markdown
 ---
 
 I'm terrified as I write these words.

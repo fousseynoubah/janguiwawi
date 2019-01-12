@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Incidents on jangui wawi</title>
+    <link>/tags/incidents/</link>
+    <description>Recent content in Incidents on jangui wawi</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 11 Jan 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/incidents/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Security incidents in Mali: introducing the notion of severity</title>
+      <link>/2019/01/security-incidents-in-mali-introducing-the-notion-of-severity/</link>
+      <pubDate>Fri, 11 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/2019/01/security-incidents-in-mali-introducing-the-notion-of-severity/</guid>
+      <description>This a rewrite of an article originally titled “Security incidents in Mali: mapping the hotspots” and posted on 2018/06/08.
+In this post, I keep exploring the data on security incidents in Mali from this Malilink webpage. Here I introduce the notion of severity because I felt that is useful to remind ourselves that the incidents are not all equal. Some, while unfortunate, leave their victims with more unpleasant memories than irreperable scars (mass robbery for instance).</description>
+    </item>
+    
+    <item>
+      <title>Security incidents in Mali: diving in with visualization</title>
+      <link>/2018/05/security-incidents-in-mali-diving-in-with-visualization/</link>
+      <pubDate>Thu, 10 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/2018/05/security-incidents-in-mali-diving-in-with-visualization/</guid>
+      <description>This an update of the original post. It dates from 2018-12-27.
+No shortcut to learningWhen I started writing this post, I was fairly confident it would be quick. After all, I had all the materials I needed, a bunch of scripts I had spent months writing. It was supposed to be a matter of copy-and-paste. I was wrong. You see, once again, I underestimated the power of the monster in me who wants to get it right all the time.</description>
+    </item>
+    
+    <item>
+      <title>Security incidents in Mali: the data</title>
+      <link>/2018/05/security-incidents-in-mali-the-data/</link>
+      <pubDate>Thu, 10 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/2018/05/security-incidents-in-mali-the-data/</guid>
+      <description>My first data science projectI first started to work on the list from the Malilink website during October 2017. I was stunned that I haven’t heard about it before (that goes to show that don’t read all my emails; I joined the platform few years earlier and I was on the mailing list). My first approach was to copy from the website and paste into an Excel spreadsheet (at that time, I hadn’t learned about the miracles of web scraping packages - I’m almost ashamed to admit it).</description>
+    </item>
+    
+  </channel>
+</rss>

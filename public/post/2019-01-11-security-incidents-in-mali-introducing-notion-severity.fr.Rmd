@@ -1,0 +1,301 @@
+---
+title: 'Incidents sécuritaires au Mali: la notion de sévérité'
+author: Fousseynou Bah
+date: '2019-01-11'
+categories:
+  - Mali
+  - sécurité
+tags:
+  - Mali
+  - sécurité
+  - incidents
+  - attaques
+  - terrorisme
+  - menaces
+  - ggplot2
+  - shiny
+  - Malilink
+slug: security-incidents-in-mali-introducing-notion-severity
+runtime: shiny
+---
+
+*Ceci est une réédition du post intitulé "Security incidents in Mali: mapping the hotspots" et datant du 2018-06/08.*
+
+
+```{r setup,include=TRUE, message=FALSE,warning=FALSE, echo=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+##########################################################################
+########################################/// PACKAGES ///
+##########################################################################
+library(tidyverse)
+library(lubridate)
+library(downloader)
+library(gridExtra)
+library(shiny)
+library(shiny.i18n)
+
+
+##########################################################################
+########################################/// THEME ///
+##########################################################################
+#Setting the theme for ggplot
+theme_set(theme_bw())
+
+##########################################################################
+########################################/// DATA ///
+##########################################################################
+load(url("https://github.com/fousseynoubah/ssm/blob/master/ssm_data.RData?raw=true"))
+
+##########################################################################
+########################################/// FEW USEFUL OBJECTS ///
+##########################################################################
+daterange <- paste0("(",
+                    format(min(incidents$date), "%b %Y"),
+                    " - ",
+                    format(max(incidents$date), "%b %Y"),
+                    ")")
+
+```
+
+Dans cet article, je continue d'explorer les données sur la situation sécuritaire au Mali, tirées cette [page du site de Malilink](http://malilink.net/attaques-terroriste-au-mali/).
+Ici, j'introduis la notion de *sévérité* parce qu'il m'a paru utile de rappeler que les incidents ne s'équivalent pas tous.
+Certaines, bien que malheureuses, laissent leurs victimes avec plus de souvenirs désagréables que de blessures (vol par exemple).
+D'autres, par contre, sont dévstatrices de par leur nature meurtrière (explosions, attaques à arme à feu, etc.).
+Pour prendre celà en compte, j'ai pensé intéréssant de créer une variable catégorielle qui servirait de paramètre d'analyse.
+D'où la notion de *sévérité*.
+Nous lui donnerons quatre (4) valeurs
+
+- 1: mort(s), bléssé(s) ;
+
+- 2: mort(s), pas de bléssé(s) ;
+
+- 3: pas de mort(s), bléssé(s) ;
+
+- 4: pas de mort(s), pas de bléssé(s).
+
+Il peut être soutenu - et avec mérite - que cette variable peut souffrir de biais.
+Certes!
+Pour sa défense, toutefois, il faut indiquer que ce biais peut être attribuer à la nature même de l'information fournie.
+
+Souvent, le nombre de victimes n'est pas connu sur le champ.
+Il apparait seulement plus tard, parfois bien longtemps après que l'incident ait été annoncé dans la presse, et que l'attention ait été portée sur d'autres évènements.
+Par exemple, certaines entrées de la liste indique *plusieurs bléssés* sans donner aucune précision.
+Dans de tels cas, l'incident tombe dans la deuxième ou quatrième catégorie, tout simplement parce qu'on ne connait pas le véritable nombre, par parce qu'il n'y avait pas de bléssé.
+D'autres fois, les victimes peuvent succomber à leurs blessures.
+Dans de tels cas, un incident de la troisième catégorie basculerai dans la première, et un incident de la quatrième dans la deuxième.
+Malheuresement, c'est très difficile (presqu'impossible) de connaître tous ces détails dans on saisit un incident dans la liste.
+Donc, retenons à l'esprit que ce que nous verront des données - en ce qui concerne les victimes - est basée sur l'impact immédiat, pas l'impact à long terme.
+
+Avec tout celà dit, regardons maintenant les incidents à travers cette nouvelle variable.
+
+
+## Reprenser les incidents sur la base de leur sévérité
+
+```{r incidents_data,echo=FALSE,message=FALSE,warning=FALSE,fig.align='center',out.width="100%"}
+
+df_severity <- 
+  incidents %>%
+  filter(!is.na(date)) %>% 
+  select(year = annee, month = mois, dead = nbr_morts, injured = nbr_blesses) %>% 
+  mutate(id = case_when((dead > 0 & !is.na(dead)) & (injured > 0 & !is.na(injured)) ~ 1,
+                              (dead > 0 & !is.na(dead)) & (injured == 0 | is.na(injured)) ~ 2,
+                              (dead == 0 | is.na(dead)) & (injured > 0 & !is.na(injured)) ~ 3,
+                              (dead == 0 | is.na(dead)) & (injured == 0 | is.na(injured)) ~ 4),
+         severity_en = factor(id, 
+                           levels = c(1, 2, 3, 4),
+                           labels = c("Dead, Injured", "Dead, No injured", "No dead, Injured", "No dead, No injured"), 
+                           ordered = TRUE), 
+         severity_fr = factor(id, 
+                              levels = c(1, 2, 3, 4), 
+                              labels = c("Morts, Bléssés", "Morts, Pas de bléssés", "Pas de morts, Bléssés", "Pas de morts, Pas de bléssés"), 
+                           ordered = TRUE)
+
+         )
+
+```
+
+
+```{r incidents_gph1,echo=FALSE,message=FALSE,warning=FALSE,fig.align='center',out.width="100%"}
+
+df_severity %>% 
+#  mutate(severity = severity_en) %>% # en
+  mutate(severity = severity_fr) %>% # fr
+  group_by(month, year, severity) %>%
+  summarise(incidents = n()) %>%
+  mutate(date = ymd(paste(year, month, "01", sep = "-"))) %>% 
+  ggplot(aes(x = date, y = incidents, fill = severity)) +
+  geom_col(position = position_stack(reverse = TRUE)) +
+  scale_fill_manual(values = c("darkred", "red", "darkorange", "orange")) +
+  theme(plot.caption = element_text(size = 8)) +
+#  labs(x = "Date", y = "Number of incidents", fill = "Severity", # en
+  labs(x = "Date", y = "Nombre d'incidents", fill = "Sévérité", # fr
+#       subtitle = paste("Grouping the incidents, by severity", daterange), # en
+       subtitle = paste("Groupage des incidents, selon la sévérité", daterange), # fr
+#       caption = "Based on data from http://malilink.net/attaques-terroriste-au-mali/" # en
+       caption = "A partir de données tirées de http://malilink.net/attaques-terroriste-au-mali/" # fr
+)
+
+
+```
+
+Le graphique ci-dessus montre que le nombre d'incident a augmenté de façon soutenue depuis le début de l'année 2017.
+Regardons tout simplement la table ci-dessous pour confirmer:
+
+```{r }
+
+df_severity %>% 
+  group_by(year, id) %>%
+  summarise(incidents = n()) %>%
+  bind_rows(df_severity %>% 
+              mutate(id = 5) %>% 
+              group_by(id, year) %>% 
+              summarise(incidents = n())
+            ) %>% 
+#  mutate(Severity = factor(id, # en
+  mutate(`Sévérité` = factor(id, # fr
+                           #labels = c("Dead, Injured", "Dead, No injured", "No dead, Injured", "No dead, No injured", "Total"), # en
+                           labels = c("Morts, Bléssés", "Morts, Pas de bléssés", "Pas de morts, Bléssés", "Pas de morts, Pas de bléssés", "Total"), # fr
+                           ordered = TRUE)) %>% 
+  spread(key = year, value = incidents) %>% 
+  select(-id) %>%
+#  knitr::kable(caption = paste('Incidents, by severity and by year,', daterange), booktabs = TRUE, "html") %>% # en
+  knitr::kable(caption = paste('Incidents, by sévérité and par an,', daterange), booktabs = TRUE) %>% # fr
+  kableExtra::kable_styling(bootstrap_options = c("striped", "responsive"), full_width = TRUE)
+
+```
+
+En 2017, la situation s'est dégradée par rapport à 2015 et 2016.
+Sur la base des comptes, 2018 n'a pas montré de signes d'amélioration par rapport aux trois années précédentes.
+Au contraire!
+En moins de six mois, le nombre d'incidents a atteint un niveau qui dépasse le total d'auss bien de 2015 que de 2016.
+
+Traduisons ces chiffres en graphiques qui se lisent en termes de proportions.
+
+```{r incidents_gph2,echo=FALSE,message=FALSE,warning=FALSE,fig.align='center',out.width="100%"}
+
+df_severity %>% 
+#  mutate(severity = severity_en) %>% # en
+  mutate(severity = severity_fr) %>% # fr
+  group_by(year, severity) %>%
+  summarise(incidents = n()) %>%
+  ggplot(aes(x = year, y = incidents, fill = severity)) +
+  geom_col(position = 'fill') +
+  coord_flip() +
+  scale_fill_manual(values = c("darkred", "red", "darkorange", "orange")) +
+  theme(plot.caption = element_text(size = 8)) +
+#  labs(x = "Year", y = "Shares", fill = "Severity", # en
+  labs(x = "Année", y = "Parts", fill = "Sévérité", # fr
+#       subtitle = paste("Grouping the incidents, by severy and by year", daterange), # en
+       subtitle = paste("Groupage des incidents, selon la sévérité", daterange), # fr
+#       caption = "Based on data from http://malilink.net/attaques-terroriste-au-mali/" # en
+       caption = "A partir de données tirées de http://malilink.net/attaques-terroriste-au-mali/" # fr
+)
+
+```
+
+Quand on considère les proportions, la structure des incidents se révèle assez surprenante.
+En 2015, environ deux tiers de incidents causaient des pertes en vies humaines.
+L'année suivante a affiché une meilleure situation.
+En 2018, la part est restée en dessous de 50% (jusque là - dans la limite des données traitées).
+Toutefois, celà ne signifie pas qu'il y a eu moins de morts en 2018.
+C'est tout le contraire, comme nous l'avons vu dans un [article précédent](https://jangui-wawi.netlify.com/fr/2018/05/incidents-sécuritaires-au-mali-premières-explorations-avec-la-visualisation/).
+Le fait que la part des incidents non-meurtriers (dans la mesure de ce que nous savons) ait augmenté peut être lié au biais de comptabilisation (le même genre dont nous avons parlé ci-haut, qui conduit à une mauvais comptage ou à une mauvaise classificiation des victimes).
+C'est possible que maintenant les incidents soient rapportés plus qu'avant, auquel cas mêmes ceux qui ne font pas de mort sont portés sur la liste.
+Je ne peux pas soutenir cette explication sur la base des données (j'avoue en toute honnêteté), mais étant donné que nous sommes dans une saison politique (élection présidentielle récemment tenue et élections législatives en vue), c'est possible que les gens soient plus attentifs.
+
+Maintenant, regardons les tendances pour pousser notre observation.
+
+```{r incidents_gph3,echo=FALSE,message=FALSE,warning=FALSE,fig.align='center',out.width="100%"}
+
+gph1 <- 
+  df_severity %>% 
+#  mutate(severity = severity_en) %>% # en
+  mutate(severity = severity_fr) %>% # fr
+  group_by(year, month, severity) %>%
+  summarise(incidents = n()) %>%
+  mutate(date = as.Date(paste(year, month, '01', sep = '-'))) %>% 
+  ggplot(aes(x = date, y = incidents, group = severity)) +
+  geom_point() +
+  geom_smooth(se = FALSE, color = "darkred", size = 0.75) +
+  facet_wrap(~severity, scales = "free_y") +
+  theme(plot.caption = element_text(size = 8),
+        strip.background = element_rect(fill = 'transparent')) +
+#  labs(x = "Date", y = "Number of incidents", fill = "", #en
+  labs(x = "Date", y = "Nombre d'incidents", fill = "", #fr
+#       subtitle = paste("Looking at the trends, by severity"), #en
+       subtitle = paste("Un aperçu des tendances, par sévérité"), #fr
+       caption = "")
+
+gph2 <- 
+  df_severity %>% 
+  mutate(severity = "Total") %>% 
+  group_by(year, month, severity) %>%
+  summarise(incidents = n()) %>%
+  mutate(date = as.Date(paste(year, month, '01', sep = '-'))) %>%
+  ggplot(aes(x = date, y = incidents, group = severity)) +
+  geom_point() +
+  geom_smooth(se = FALSE, color = "darkred", size = 0.75) +
+  facet_wrap(~severity, scales = "free_y") + 
+  theme(plot.caption = element_text(size = 8),
+        strip.background = element_rect(fill = 'transparent')) +
+#  labs(x = "Date", y = "Number of incidents", fill = "", #en
+  labs(x = "Date", y = "Nombre d'incidents", fill = "", #fr
+#       subtitle = paste("Looking at the overall trend"), #en
+       subtitle = paste("Un aperçu de la tendance générale"), #fr
+#       caption = "Based on data from http://malilink.net/attaques-terroriste-au-mali/" # en
+       caption = "A partir de données tirées de http://malilink.net/attaques-terroriste-au-mali/" # fr
+       )
+
+grid.arrange(gph1,
+             gph2,
+             layout_matrix = matrix(c(1, 2), byrow = TRUE, nrow = 1))
+
+rm(gph1, gph2)
+
+```
+
+Les graphiques montrent que la situation est critique.
+Et, sur la base des pentes montantes, elle s'empire depuis un bout de temps.
+A savoir si les choses vont rester telles quelles ou changer dans le futur proche ou distant est une question qui dépasse le cadre de cet article.
+Toutefois, restons optimistes!
+
+## Ajout de la dimension spatiale
+
+Ici, nous allons visualiser la sévérité à travers le territoire national.
+Dans les articles précédents, j'ai distingués deux types d'incidents: ceux des points et ceux des lignes.
+Dans le premier groupe se trouve les incidents pour lesquels les endroit sont clairement indiqués, les coordonnées bien connues.
+Ce groupe représente environ `r incidents %>% filter( !(is.na(point) & is.na(depart)) )  %>% summarize(round(100*mean(!is.na(point)), 1))`% des observations (`r incidents %>% filter( !(is.na(point) & is.na(depart)) )  %>% summarize(n())` sur `r nrow(incidents)` incidents recensés).
+Dans le second groupe, toutefois, nous avons seulement des indications vagues, principalement deux points entre lesquels les incidents ont eu lieu.
+Pour le moment, concentrons sur le premier groupe.
+
+La carte ci-dessous montre, pour chaque lieu connu, le nombre d'incidents par année et par sévérité.
+
+<div>
+<iframe width="700" height="700" scrolling="yes" frameborder="0"  src="http://18.219.213.81:3838/ssm5_fr/"> </iframe>
+</div>
+
+En regardant les points sur la carte, l'on commence à se faire une idées des zones qui sont les plus affectées par les incidents - selon le type et l'année d'intérêt.
+D'aucun peut souhaiter avec une meilleur idée en synthétisant l'information.
+Nous allons explorer deux méthodes.
+
+En premier lieu, nous allons simplement agréger le nombre d'incidents par divisions administratives.
+Considérons les régions.
+De par leur faible nombre (8 régions + 1 district), ceci est le niveau qui se prête le mieux à la visualisation.
+
+<div>
+<iframe width="700" height="700" scrolling="yes" frameborder="0"  src="http://18.219.213.81:3838/ssm6_fr/"> </iframe>
+</div>
+
+La deuxième méthode consiste en une approche visuelle plutôt qu'arithmétique.
+Nous allons utiliser la fonction `stat_density2d` du package `ggplot2`.
+A travers une density bidimensielle, nous obtiendrons un aperçu des points chauds.
+
+<div>
+<iframe width="700" height="700" scrolling="yes" frameborder="0"  src="http://18.219.213.81:3838/ssm7_fr/"> </iframe>
+</div>
+
+
+
+*Comme pour tous les articles, celui-ci est - est risque de rester pendant longtemps - un travail en cours.*
+*Je crois en encore et toujours aux données, au pouvoir du savoir, et dans sa capacité à transformer les monde pour le meilleur.*

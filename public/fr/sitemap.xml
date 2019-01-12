@@ -3,6 +3,21 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/fr/2019/01/incidents-s%C3%A9curitaires-au-mali-la-notion-de-s%C3%A9v%C3%A9rit%C3%A9/</loc>
+    <lastmod>2019-01-11T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/2019/01/security-incidents-in-mali-introducing-the-notion-of-severity/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="/fr/2019/01/incidents-s%C3%A9curitaires-au-mali-la-notion-de-s%C3%A9v%C3%A9rit%C3%A9/"
+                />
+  </url>
+  
+  <url>
     <loc>/fr/2018/05/incidents-s%C3%A9curitaires-au-mali-premi%C3%A8res-explorations-avec-la-visualisation/</loc>
     <lastmod>2018-05-16T00:00:00+00:00</lastmod>
     <xhtml:link
@@ -63,6 +78,12 @@
   </url>
   
   <url>
+    <loc>/fr/tags/attaques/</loc>
+    <lastmod>2019-01-11T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/fr/categories/</loc>
     <priority>0</priority>
     <xhtml:link
@@ -78,34 +99,50 @@
   </url>
   
   <url>
-    <loc>/fr/categories/data/</loc>
-    <lastmod>2018-05-16T00:00:00+00:00</lastmod>
+    <loc>/fr/tags/ggplot2/</loc>
+    <lastmod>2019-01-11T00:00:00+00:00</lastmod>
     <priority>0</priority>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="/categories/data/"
+                href="/tags/ggplot2/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="fr"
-                href="/fr/categories/data/"
+                href="/fr/tags/ggplot2/"
                 />
   </url>
   
   <url>
-    <loc>/fr/tags/data/</loc>
+    <loc>/fr/tags/ggvis/</loc>
     <lastmod>2018-05-16T00:00:00+00:00</lastmod>
     <priority>0</priority>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="/tags/data/"
+                href="/tags/ggvis/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="fr"
-                href="/fr/tags/data/"
+                href="/fr/tags/ggvis/"
+                />
+  </url>
+  
+  <url>
+    <loc>/fr/tags/incidents/</loc>
+    <lastmod>2019-01-11T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/tags/incidents/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="/fr/tags/incidents/"
                 />
   </url>
   
@@ -127,7 +164,7 @@
   
   <url>
     <loc>/fr/tags/mali/</loc>
-    <lastmod>2018-05-16T00:00:00+00:00</lastmod>
+    <lastmod>2019-01-11T00:00:00+00:00</lastmod>
     <priority>0</priority>
     <xhtml:link
                 rel="alternate"
@@ -142,8 +179,62 @@
   </url>
   
   <url>
-    <loc>/fr/post/</loc>
+    <loc>/fr/categories/mali/</loc>
+    <lastmod>2019-01-11T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/categories/mali/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="/fr/categories/mali/"
+                />
+  </url>
+  
+  <url>
+    <loc>/fr/tags/malilink/</loc>
+    <lastmod>2019-01-11T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/tags/malilink/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="/fr/tags/malilink/"
+                />
+  </url>
+  
+  <url>
+    <loc>/fr/tags/menaces/</loc>
+    <lastmod>2019-01-11T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/fr/tags/plotly/</loc>
     <lastmod>2018-05-16T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/tags/plotly/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="/fr/tags/plotly/"
+                />
+  </url>
+  
+  <url>
+    <loc>/fr/post/</loc>
+    <lastmod>2019-01-11T00:00:00+00:00</lastmod>
     <priority>0</priority>
     <xhtml:link
                 rel="alternate"
@@ -174,22 +265,6 @@
   </url>
   
   <url>
-    <loc>/fr/categories/r/</loc>
-    <lastmod>2018-05-16T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/categories/r/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="fr"
-                href="/fr/categories/r/"
-                />
-  </url>
-  
-  <url>
     <loc>/fr/tags/r/</loc>
     <lastmod>2018-05-03T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -206,8 +281,24 @@
   </url>
   
   <url>
+    <loc>/fr/categories/r/</loc>
+    <lastmod>2018-05-03T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/categories/r/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="/fr/categories/r/"
+                />
+  </url>
+  
+  <url>
     <loc>/fr/tags/r-markdown/</loc>
-    <lastmod>2018-05-16T00:00:00+00:00</lastmod>
+    <lastmod>2018-05-04T00:00:00+00:00</lastmod>
     <priority>0</priority>
     <xhtml:link
                 rel="alternate"
@@ -238,24 +329,58 @@
   </url>
   
   <url>
-    <loc>/fr/tags/security/</loc>
+    <loc>/fr/categories/security/</loc>
     <lastmod>2018-05-16T00:00:00+00:00</lastmod>
     <priority>0</priority>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="/tags/security/"
+                href="/categories/security/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="fr"
-                href="/fr/tags/security/"
+                href="/fr/categories/security/"
                 />
   </url>
   
   <url>
+    <loc>/fr/tags/securit%C3%A9/</loc>
+    <lastmod>2018-05-04T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/fr/tags/shiny/</loc>
+    <lastmod>2019-01-11T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/tags/shiny/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="/fr/tags/shiny/"
+                />
+  </url>
+  
+  <url>
+    <loc>/fr/tags/s%C3%A9curit%C3%A9/</loc>
+    <lastmod>2019-01-11T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/fr/categories/s%C3%A9curit%C3%A9/</loc>
+    <lastmod>2019-01-11T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/fr/tags/</loc>
-    <lastmod>2018-05-16T00:00:00+00:00</lastmod>
+    <lastmod>2019-01-11T00:00:00+00:00</lastmod>
     <priority>0</priority>
     <xhtml:link
                 rel="alternate"
@@ -270,35 +395,9 @@
   </url>
   
   <url>
-    <loc>/fr/tags/terrorism/</loc>
-    <lastmod>2018-05-16T00:00:00+00:00</lastmod>
+    <loc>/fr/tags/terrorisme/</loc>
+    <lastmod>2019-01-11T00:00:00+00:00</lastmod>
     <priority>0</priority>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/tags/terrorism/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="fr"
-                href="/fr/tags/terrorism/"
-                />
-  </url>
-  
-  <url>
-    <loc>/fr/tags/threats/</loc>
-    <lastmod>2018-05-16T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/tags/threats/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="fr"
-                href="/fr/tags/threats/"
-                />
   </url>
   
   <url>
@@ -334,7 +433,7 @@
   
   <url>
     <loc>/fr/</loc>
-    <lastmod>2018-05-16T00:00:00+00:00</lastmod>
+    <lastmod>2019-01-11T00:00:00+00:00</lastmod>
     <priority>0</priority>
     <xhtml:link
                 rel="alternate"

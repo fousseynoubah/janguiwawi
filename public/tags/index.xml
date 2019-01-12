@@ -6,26 +6,71 @@
     <description>Recent content in Tags on jangui wawi</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 16 May 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 11 Jan 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Data</title>
-      <link>/tags/data/</link>
-      <pubDate>Wed, 16 May 2018 00:00:00 +0000</pubDate>
+      <title>Attacks</title>
+      <link>/tags/attacks/</link>
+      <pubDate>Fri, 11 Jan 2019 00:00:00 +0000</pubDate>
       
-      <guid>/tags/data/</guid>
+      <guid>/tags/attacks/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Ggplot2</title>
+      <link>/tags/ggplot2/</link>
+      <pubDate>Fri, 11 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/ggplot2/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Ggvis</title>
+      <link>/tags/ggvis/</link>
+      <pubDate>Thu, 10 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/ggvis/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Incidents</title>
+      <link>/tags/incidents/</link>
+      <pubDate>Fri, 11 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/incidents/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Mali</title>
       <link>/tags/mali/</link>
-      <pubDate>Wed, 16 May 2018 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 11 Jan 2019 00:00:00 +0000</pubDate>
       
       <guid>/tags/mali/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Malilink</title>
+      <link>/tags/malilink/</link>
+      <pubDate>Fri, 11 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/malilink/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Plotly</title>
+      <link>/tags/plotly/</link>
+      <pubDate>Thu, 10 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/plotly/</guid>
       <description></description>
     </item>
     
@@ -50,7 +95,7 @@
     <item>
       <title>R Markdown</title>
       <link>/tags/r-markdown/</link>
-      <pubDate>Wed, 16 May 2018 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 04 May 2018 00:00:00 +0000</pubDate>
       
       <guid>/tags/r-markdown/</guid>
       <description></description>
@@ -68,16 +113,25 @@
     <item>
       <title>Security</title>
       <link>/tags/security/</link>
-      <pubDate>Wed, 16 May 2018 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 11 Jan 2019 00:00:00 +0000</pubDate>
       
       <guid>/tags/security/</guid>
       <description></description>
     </item>
     
     <item>
+      <title>Shiny</title>
+      <link>/tags/shiny/</link>
+      <pubDate>Fri, 11 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/shiny/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Terrorism</title>
       <link>/tags/terrorism/</link>
-      <pubDate>Wed, 16 May 2018 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 11 Jan 2019 00:00:00 +0000</pubDate>
       
       <guid>/tags/terrorism/</guid>
       <description></description>
@@ -86,7 +140,7 @@
     <item>
       <title>Threats</title>
       <link>/tags/threats/</link>
-      <pubDate>Wed, 16 May 2018 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 11 Jan 2019 00:00:00 +0000</pubDate>
       
       <guid>/tags/threats/</guid>
       <description></description>

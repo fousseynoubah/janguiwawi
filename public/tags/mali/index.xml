@@ -6,18 +6,28 @@
     <description>Recent content in Mali on jangui wawi</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 16 May 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 11 Jan 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/mali/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>Security incidents in Mali: introducing the notion of severity</title>
+      <link>/2019/01/security-incidents-in-mali-introducing-the-notion-of-severity/</link>
+      <pubDate>Fri, 11 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/2019/01/security-incidents-in-mali-introducing-the-notion-of-severity/</guid>
+      <description>This a rewrite of an article originally titled “Security incidents in Mali: mapping the hotspots” and posted on 2018/06/08.
+In this post, I keep exploring the data on security incidents in Mali from this Malilink webpage. Here I introduce the notion of severity because I felt that is useful to remind ourselves that the incidents are not all equal. Some, while unfortunate, leave their victims with more unpleasant memories than irreperable scars (mass robbery for instance).</description>
+    </item>
+    
+    <item>
       <title>Security incidents in Mali: diving in with visualization</title>
       <link>/2018/05/security-incidents-in-mali-diving-in-with-visualization/</link>
-      <pubDate>Wed, 16 May 2018 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 10 May 2018 00:00:00 +0000</pubDate>
       
       <guid>/2018/05/security-incidents-in-mali-diving-in-with-visualization/</guid>
-      <description>This version of the post is a reedition of the original. It dates from 2018-12-27.
+      <description>This an update of the original post. It dates from 2018-12-27.
 No shortcut to learningWhen I started writing this post, I was fairly confident it would be quick. After all, I had all the materials I needed, a bunch of scripts I had spent months writing. It was supposed to be a matter of copy-and-paste. I was wrong. You see, once again, I underestimated the power of the monster in me who wants to get it right all the time.</description>
     </item>
     

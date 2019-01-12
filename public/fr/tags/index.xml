@@ -6,26 +6,80 @@
     <description>Recent content in Tags on jangui wawi</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 16 May 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 11 Jan 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/fr/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Data</title>
-      <link>/fr/tags/data/</link>
+      <title>Attaques</title>
+      <link>/fr/tags/attaques/</link>
+      <pubDate>Fri, 11 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/fr/tags/attaques/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Ggplot2</title>
+      <link>/fr/tags/ggplot2/</link>
+      <pubDate>Fri, 11 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/fr/tags/ggplot2/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Ggvis</title>
+      <link>/fr/tags/ggvis/</link>
       <pubDate>Wed, 16 May 2018 00:00:00 +0000</pubDate>
       
-      <guid>/fr/tags/data/</guid>
+      <guid>/fr/tags/ggvis/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Incidents</title>
+      <link>/fr/tags/incidents/</link>
+      <pubDate>Fri, 11 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/fr/tags/incidents/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Mali</title>
       <link>/fr/tags/mali/</link>
-      <pubDate>Wed, 16 May 2018 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 11 Jan 2019 00:00:00 +0000</pubDate>
       
       <guid>/fr/tags/mali/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Malilink</title>
+      <link>/fr/tags/malilink/</link>
+      <pubDate>Fri, 11 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/fr/tags/malilink/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Menaces</title>
+      <link>/fr/tags/menaces/</link>
+      <pubDate>Fri, 11 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/fr/tags/menaces/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Plotly</title>
+      <link>/fr/tags/plotly/</link>
+      <pubDate>Wed, 16 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/fr/tags/plotly/</guid>
       <description></description>
     </item>
     
@@ -50,7 +104,7 @@
     <item>
       <title>R Markdown</title>
       <link>/fr/tags/r-markdown/</link>
-      <pubDate>Wed, 16 May 2018 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 04 May 2018 00:00:00 +0000</pubDate>
       
       <guid>/fr/tags/r-markdown/</guid>
       <description></description>
@@ -66,29 +120,38 @@
     </item>
     
     <item>
-      <title>Security</title>
-      <link>/fr/tags/security/</link>
-      <pubDate>Wed, 16 May 2018 00:00:00 +0000</pubDate>
+      <title>Securité</title>
+      <link>/fr/tags/securit%C3%A9/</link>
+      <pubDate>Fri, 04 May 2018 00:00:00 +0000</pubDate>
       
-      <guid>/fr/tags/security/</guid>
+      <guid>/fr/tags/securit%C3%A9/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Terrorism</title>
-      <link>/fr/tags/terrorism/</link>
-      <pubDate>Wed, 16 May 2018 00:00:00 +0000</pubDate>
+      <title>Shiny</title>
+      <link>/fr/tags/shiny/</link>
+      <pubDate>Fri, 11 Jan 2019 00:00:00 +0000</pubDate>
       
-      <guid>/fr/tags/terrorism/</guid>
+      <guid>/fr/tags/shiny/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Threats</title>
-      <link>/fr/tags/threats/</link>
-      <pubDate>Wed, 16 May 2018 00:00:00 +0000</pubDate>
+      <title>Sécurité</title>
+      <link>/fr/tags/s%C3%A9curit%C3%A9/</link>
+      <pubDate>Fri, 11 Jan 2019 00:00:00 +0000</pubDate>
       
-      <guid>/fr/tags/threats/</guid>
+      <guid>/fr/tags/s%C3%A9curit%C3%A9/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Terrorisme</title>
+      <link>/fr/tags/terrorisme/</link>
+      <pubDate>Fri, 11 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/fr/tags/terrorisme/</guid>
       <description></description>
     </item>
     

@@ -3,13 +3,15 @@ title: 'Incidents sécuritaires au Mali: les données'
 author: Fousseynou Bah
 date: '2018-05-10'
 categories:
-  - R
-tags:
-  - data
   - Mali
   - security
-  - terrorism
-  - threats
+tags:
+  - Mali
+  - sécurité
+  - incidents
+  - terrorisme
+  - menaces
+  - Malilink
 slug: security-threats-in-mali-the-data
 ---
 

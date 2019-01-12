@@ -1,21 +1,26 @@
 ---
 title: 'Security incidents in Mali: diving in with visualization'
 author: Fousseynou Bah
-date: '2018-05-16'
+date: '2018-05-10'
 categories:
-  - data
-  - R
-tags:
-  - data
   - Mali
-  - R Markdown
   - security
+tags:
+  - Mali
+  - security
+  - incidents
+  - attacks
   - terrorism
   - threats
-slug: security-incidents-in-mali-the-incidents
+  - ggplot2
+  - shiny
+  - plotly
+  - ggvis
+  - Malilink
+slug: security-incidents-in-mali-visualization
 ---
 
-*This version of the post is a reedition of the original.*
+*This an update of the original post.*
 *It dates from 2018-12-27.*
 
 ```{r setup, include=FALSE}
@@ -28,20 +33,6 @@ library(tidyverse)
 library(stringr)
 library(lubridate)
 library(plotly)
-#library("readxl")
-#library("readxl")
-#library("rgdal")
-#library("maps")
-#library("ggthemes")
-#library("gganimate")
-#library("RColorBrewer")
-#library("geomnet")
-#library("gridExtra")
-#library("knitr")
-#library("forecast")
-#library("xtable")
-#library(readr)
-#library(repmis)
 
 ##########################################################################
 ########################################/// DATA ///

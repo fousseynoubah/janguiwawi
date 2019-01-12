@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Attaques on jangui wawi</title>
+    <link>/fr/tags/attaques/</link>
+    <description>Recent content in Attaques on jangui wawi</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 11 Jan 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/fr/tags/attaques/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Incidents sécuritaires au Mali: la notion de sévérité</title>
+      <link>/fr/2019/01/incidents-s%C3%A9curitaires-au-mali-la-notion-de-s%C3%A9v%C3%A9rit%C3%A9/</link>
+      <pubDate>Fri, 11 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/fr/2019/01/incidents-s%C3%A9curitaires-au-mali-la-notion-de-s%C3%A9v%C3%A9rit%C3%A9/</guid>
+      <description>Ceci est une réédition du post intitulé “Security incidents in Mali: mapping the hotspots” et datant du 2018-06/08.
+Dans cet article, je continue d’explorer les données sur la situation sécuritaire au Mali, tirées cette page du site de Malilink. Ici, j’introduis la notion de sévérité parce qu’il m’a paru utile de rappeler que les incidents ne s’équivalent pas tous. Certaines, bien que malheureuses, laissent leurs victimes avec plus de souvenirs désagréables que de blessures (vol par exemple).</description>
+    </item>
+    
+    <item>
+      <title>Incidents sécuritaires au Mali: premières explorations avec la visualisation</title>
+      <link>/fr/2018/05/incidents-s%C3%A9curitaires-au-mali-premi%C3%A8res-explorations-avec-la-visualisation/</link>
+      <pubDate>Wed, 16 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/fr/2018/05/incidents-s%C3%A9curitaires-au-mali-premi%C3%A8res-explorations-avec-la-visualisation/</guid>
+      <description>Ceci est une mise à jour de l’article original. Elle date du 2018-12-27.
+Pas de raccourci pour apprendreQuand j’ai commencé à écrire ce post, j’étais très confiant dans le fait que ce serait rapide. Après tout, j’avais toutes les ressources nécessaires à ma disposition, un tas de codes que j’avais passé des mois à écrire. C’était censé être une affaire de copier-coller. J’avais tort. Vous voyez, encore une fois, j’ai sous-estimé le pouvoir du monstre en moi que je veux toujours bien faire les choses tout le temps.</description>
+    </item>
+    
+  </channel>
+</rss>

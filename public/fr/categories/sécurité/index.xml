@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Sécurité on jangui wawi</title>
+    <link>/fr/categories/s%C3%A9curit%C3%A9/</link>
+    <description>Recent content in Sécurité on jangui wawi</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 11 Jan 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/fr/categories/s%C3%A9curit%C3%A9/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Incidents sécuritaires au Mali: la notion de sévérité</title>
+      <link>/fr/2019/01/incidents-s%C3%A9curitaires-au-mali-la-notion-de-s%C3%A9v%C3%A9rit%C3%A9/</link>
+      <pubDate>Fri, 11 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/fr/2019/01/incidents-s%C3%A9curitaires-au-mali-la-notion-de-s%C3%A9v%C3%A9rit%C3%A9/</guid>
+      <description>Ceci est une réédition du post intitulé “Security incidents in Mali: mapping the hotspots” et datant du 2018-06/08.
+Dans cet article, je continue d’explorer les données sur la situation sécuritaire au Mali, tirées cette page du site de Malilink. Ici, j’introduis la notion de sévérité parce qu’il m’a paru utile de rappeler que les incidents ne s’équivalent pas tous. Certaines, bien que malheureuses, laissent leurs victimes avec plus de souvenirs désagréables que de blessures (vol par exemple).</description>
+    </item>
+    
+    <item>
+      <title>Probablement au-dessus de ma tête</title>
+      <link>/fr/2018/05/probablement-au-dessus-de-ma-t%C3%AAte/</link>
+      <pubDate>Fri, 04 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/fr/2018/05/probablement-au-dessus-de-ma-t%C3%AAte/</guid>
+      <description>L’année dernière, je me suis lié d’amitié avec une nouvelle personne. Elle (c’est une personne et une fille) m’a fait découvrir Kaggle. Je n’avais aucune idée de ce que c’était. Elle était amusée, et moi légèrement embarassé. Moi qui me pensais si contemporain, si mondain, si informé de ce qui se passe ci et là (oui, je me perds souvent une folie de grandeur dans ma tête) ne savait rien de ce qu’était Kaggle.</description>
+    </item>
+    
+  </channel>
+</rss>

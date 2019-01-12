@@ -1,0 +1,475 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<meta property="og:title" content="Security incidents in Mali: introducing the notion of severity" />
+<meta property="og:description" content="This a rewrite of an article originally titled “Security incidents in Mali: mapping the hotspots” and posted on 2018/06/08.
+In this post, I keep exploring the data on security incidents in Mali from this Malilink webpage. Here I introduce the notion of severity because I felt that is useful to remind ourselves that the incidents are not all equal. Some, while unfortunate, leave their victims with more unpleasant memories than irreperable scars (mass robbery for instance)." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/2019/01/security-incidents-in-mali-introducing-the-notion-of-severity/" /><meta property="article:published_time" content="2019-01-11T00:00:00&#43;00:00"/>
+<meta property="article:modified_time" content="2019-01-11T00:00:00&#43;00:00"/>
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Security incidents in Mali: introducing the notion of severity"/>
+<meta name="twitter:description" content="This a rewrite of an article originally titled “Security incidents in Mali: mapping the hotspots” and posted on 2018/06/08.
+In this post, I keep exploring the data on security incidents in Mali from this Malilink webpage. Here I introduce the notion of severity because I felt that is useful to remind ourselves that the incidents are not all equal. Some, while unfortunate, leave their victims with more unpleasant memories than irreperable scars (mass robbery for instance)."/>
+
+
+
+    <link rel="canonical" href="/2019/01/security-incidents-in-mali-introducing-the-notion-of-severity/">
+
+    <title>
+      
+        Security incidents in Mali: introducing the notion of severity | jangui wawi
+      
+    </title>
+
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="/css/style.css" rel="stylesheet">
+
+    
+
+    
+
+    
+  </head>
+  <body>
+    
+      
+
+<header class="blog-header">
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
+        <a class="navbar-brand" href="/">
+            jangui wawi
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+            <ul class="navbar-nav">
+                
+                
+                <li class="nav-item ">
+                    
+                        <a class="nav-link" href="/">Home</a>
+                    
+                </li>
+                
+                <li class="nav-item ">
+                    
+                        <a class="nav-link" href="/about/">About</a>
+                    
+                </li>
+                
+                <li class="nav-item ">
+                    
+                        <a class="nav-link" href="/contact/">Contact</a>
+                    
+                </li>
+                
+            </ul>
+            
+            <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Language
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                        
+                            <a class="dropdown-item" href="/">English</a>
+                        
+                            <a class="dropdown-item" href="/fr/">Français</a>
+                        
+                    </div>
+                </li>
+            </ul>
+            
+        </div>
+    </nav>
+</header>
+
+    
+
+    
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-lg-8 blog-main">
+
+          
+
+<header>
+    <h2 class="blog-post-title">
+    <a class="text-dark" href="/2019/01/security-incidents-in-mali-introducing-the-notion-of-severity/">Security incidents in Mali: introducing the notion of severity</a>
+</h2>
+
+    
+
+
+<div class="blog-post-date text-secondary">
+    
+        <time datetime="2019-01-11">Jan 11, 2019</time>
+    
+    
+        by <span rel="author">Fousseynou Bah</span>
+    
+</div>
+
+    
+<div class="blog-post-tags text-secondary">
+    <strong>Tags:</strong>
+    
+        <a class="badge badge-primary" href="/tags/mali">Mali</a>
+    
+        <a class="badge badge-primary" href="/tags/security">security</a>
+    
+        <a class="badge badge-primary" href="/tags/incidents">incidents</a>
+    
+        <a class="badge badge-primary" href="/tags/attacks">attacks</a>
+    
+        <a class="badge badge-primary" href="/tags/terrorism">terrorism</a>
+    
+        <a class="badge badge-primary" href="/tags/threats">threats</a>
+    
+        <a class="badge badge-primary" href="/tags/ggplot2">ggplot2</a>
+    
+        <a class="badge badge-primary" href="/tags/shiny">shiny</a>
+    
+        <a class="badge badge-primary" href="/tags/malilink">Malilink</a>
+    
+</div>
+
+    
+<div class="blog-post-categories text-secondary">
+    <strong>Categories:</strong>
+    
+        <a class="badge badge-primary" href="/categories/mali">Mali</a>
+    
+        <a class="badge badge-primary" href="/categories/security">security</a>
+    
+</div>
+
+    <hr>
+</header>
+<article class="blog-post">
+    
+<script src="/rmarkdown-libs/kePrint/kePrint.js"></script>
+
+
+<p><em>This a rewrite of an article originally titled “Security incidents in Mali: mapping the hotspots” and posted on 2018/06/08.</em></p>
+<p>In this post, I keep exploring the data on security incidents in Mali from this <a href="http://malilink.net/attaques-terroriste-au-mali/">Malilink webpage</a>. Here I introduce the notion of <em>severity</em> because I felt that is useful to remind ourselves that the incidents are not all equal. Some, while unfortunate, leave their victims with more unpleasant memories than irreperable scars (mass robbery for instance). Other, however, are devastating by their deadly nature (explosions, mass shootings, etc.). To take that into account, I thought it could be interesting to create a categorical variable that would serve as a facetting parameter. Hence this notion of <em>severity</em>. We’ll give it four values:</p>
+<ul>
+<li><p>1: dead, injured ;</p></li>
+<li><p>2: dead, no injured ;</p></li>
+<li><p>3: no dead, injured ;</p></li>
+<li><p>4: no dead, no injured.</p></li>
+</ul>
+<p>It can be argued - and with merit - that this variable can suffer some bias. In it defense tough, that bias can be attributed to the very nature of the information provided.</p>
+<p>Sometimes, the number of victims is not known right away. It only emerges afterwards, often long after the incident has been reported in the press, and the attention has shifted to another event. For example, some entries in the list indicate <em>many injured</em> without giving any precision. In such cases, an incident would fall into the second or fourth category simply because we don’t have a number, not because no one was injured. Other times, victims can succomb to their wounds. In such cases, an incident from the third category would be bumped to the first, and one from the fourth category to the second. Unfortunately, it is hard (next to impossible) to know all those things when entrying an incident. So, let’s keep in mind that the picture we’ll get from the data - as far as the victims are concerned - is based on the immediate fallout, not the long term impact.</p>
+<p>With all that said, now let’s look back on the incidents through that new variable.</p>
+<div id="section-rethinking-the-incidents-based-on-their-severity" class="section level2">
+<h2>Rethinking the incidents based on their severity</h2>
+<p><img src="/post/2019-01-11-security-incidents-in-mali-introducing-notion-severity_files/figure-html/incidents_gph1-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>The graph above shows that the number of incidents has been consistantly increasing since the beginning of 2017. Let’s take a simple look at the table below to confirm:</p>
+<table class="table table-striped table-responsive" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:unnamed-chunk-1">Table 1: </span>Incidents, by severity and by year, (Jan 2015 - Jun 2018)
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Severity
+</th>
+<th style="text-align:right;">
+2015
+</th>
+<th style="text-align:right;">
+2016
+</th>
+<th style="text-align:right;">
+2017
+</th>
+<th style="text-align:right;">
+2018
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Dead, Injured
+</td>
+<td style="text-align:right;">
+26
+</td>
+<td style="text-align:right;">
+46
+</td>
+<td style="text-align:right;">
+63
+</td>
+<td style="text-align:right;">
+33
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Dead, No injured
+</td>
+<td style="text-align:right;">
+51
+</td>
+<td style="text-align:right;">
+36
+</td>
+<td style="text-align:right;">
+65
+</td>
+<td style="text-align:right;">
+65
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+No dead, Injured
+</td>
+<td style="text-align:right;">
+15
+</td>
+<td style="text-align:right;">
+21
+</td>
+<td style="text-align:right;">
+33
+</td>
+<td style="text-align:right;">
+17
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+No dead, No injured
+</td>
+<td style="text-align:right;">
+28
+</td>
+<td style="text-align:right;">
+54
+</td>
+<td style="text-align:right;">
+69
+</td>
+<td style="text-align:right;">
+78
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Total
+</td>
+<td style="text-align:right;">
+120
+</td>
+<td style="text-align:right;">
+157
+</td>
+<td style="text-align:right;">
+230
+</td>
+<td style="text-align:right;">
+193
+</td>
+</tr>
+</tbody>
+</table>
+<p>In 2017, the situation worsened compared to 2015 and 2016. Based on the count, 2018 did not show any sign of improvement over the three previous years. On the contrary! In less than six month, the number of incidents has reached a level larger than the overall count in either of 2015 or 2016.</p>
+<p>Let’s translate these figure into a chart to read them in terms of shares.</p>
+<p><img src="/post/2019-01-11-security-incidents-in-mali-introducing-notion-severity_files/figure-html/incidents_gph2-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>When we consider the proportions, the breakdown of the incidents by severity proves quite surprising. In 2015, about two thirds of the incidents resulted in death(s). The following two years fared better. In 2018, the share remains below 50% (so far - based on the data processed). However, that doesn’t mean that there were less deaths in 2018. It is the contrary, as we saw in a <a href="https://jangui-wawi.netlify.com/2018/05/security-incidents-in-mali-diving-in-with-visualization/">previous post</a>. The fact that the share of the non-deadly incidents (as far as we know) has increased might be linked to reporting bias (the same kind we talked about early about, leading to miscount or misclassification of victims). It is possible that now incidents are being reported more than before, in which case even the non-deadly make it to the list. I can’t definitely support that based on the data (just being honest here), but given that we’re in a political season (recent presidential election and upcoming parliament elections), it is possible that people are paying more attention.</p>
+<p>Now, let’s take a look at the trend to further our observation.</p>
+<p><img src="/post/2019-01-11-security-incidents-in-mali-introducing-notion-severity_files/figure-html/incidents_gph3-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>The graphs indicate that the situation is critical. And, based on the upward slopes, it’s been worsening for some time now. Whether they are going to remain that way or change in the near or distant future is a question beyond the scope of this post. But let’s be optimistic!</p>
+</div>
+<div id="section-adding-the-spatial-dimension" class="section level2">
+<h2>Adding the spatial dimension</h2>
+<p>Here, we will visualize the severity across the national territory. In previous posts, I split the incidents into two groups: that of the points and that of the lines. In the former, I put the incidents for which the places are clearly indicated and the coordinates known. This group makes up about 85.9% on the observations (676 out of 700 listed incidents). In the latter, however, we only have vague indications, mostly two points between which the incidents took place. For now, let’s focus on the former group.</p>
+<p>The following map shows, for each known location, the number of incidents by year and by severity.</p>
+<div>
+<iframe width="700" height="700" scrolling="yes" frameborder="0" src="http://18.219.213.81:3838/ssm5_en/">
+</iframe>
+</div>
+<p>Looking at the points on the map, one can start to make out the areas that are affected the most by the incidents - depending on the type and the year of interest. One might wish to get a clearer picture by summarizing the information. Here, we’ll try two methods.</p>
+<p>First, we simply agregate the number of incidents by administrative divisions. Let’s consider the region. Due to the small number (8 regions + 1 district), that is the level that lends itself the best to visualisation.</p>
+<div>
+<iframe width="700" height="700" scrolling="yes" frameborder="0" src="http://18.219.213.81:3838/ssm6_en/">
+</iframe>
+</div>
+<p>The second method consists of a visual approach, rather than a arithmetic one. We’ll use the function <code>stat_density2d</code> function of the <code>ggplot2</code> package. Through a two dimensionnal density, we’ll be able to get a glimpse of the hotspots.</p>
+<div>
+<iframe width="700" height="700" scrolling="yes" frameborder="0" src="http://18.219.213.81:3838/ssm7_en/">
+</iframe>
+</div>
+<p><em>As for all the posts, this is - and is likely to remain for a long time - a work in progress.</em> <em>I still and will always believe in data, and in the power of knowledge, in its ability to change the world for the better.</em></p>
+</div>
+
+
+    
+      <h4>Translations</h4>
+      <ul>
+        
+        <li>
+          <a href="/fr/2019/01/incidents-s%C3%A9curitaires-au-mali-la-notion-de-s%C3%A9v%C3%A9rit%C3%A9/">fr: Incidents sécuritaires au Mali: la notion de sévérité</a>
+        </li>
+        
+      </ul>
+    
+
+    
+
+    <h4>See also</h4>
+    <ul>
+        
+            <li><a href="/2018/05/security-incidents-in-mali-diving-in-with-visualization/">Security incidents in Mali: diving in with visualization</a></li>
+        
+            <li><a href="/2018/05/security-incidents-in-mali-the-data/">Security incidents in Mali: the data</a></li>
+        
+            <li><a href="/2018/05/probably-over-my-head/">Probably over my head</a></li>
+        
+    </ul>
+
+
+</article>
+
+
+
+        </div>
+
+        <aside class="col-12 col-lg-3 ml-auto blog-sidebar">
+    
+        
+
+
+<section>
+    <h4>Recent Posts</h4>
+    <ol class="list-unstyled">
+        
+        <li>
+            <a href="/2019/01/security-incidents-in-mali-introducing-the-notion-of-severity/">Security incidents in Mali: introducing the notion of severity</a>
+        </li>
+        
+        <li>
+            <a href="/2018/05/security-incidents-in-mali-diving-in-with-visualization/">Security incidents in Mali: diving in with visualization</a>
+        </li>
+        
+        <li>
+            <a href="/2018/05/security-incidents-in-mali-the-data/">Security incidents in Mali: the data</a>
+        </li>
+        
+        <li>
+            <a href="/2018/05/probably-over-my-head/">Probably over my head</a>
+        </li>
+        
+        <li>
+            <a href="/2018/05/here-i-go/">Here I go</a>
+        </li>
+        
+    </ol>
+</section>
+
+    
+    
+        <section>
+    
+        
+    
+        
+        <h4>Categories</h4>
+        <p>
+            
+            <a class="badge badge-primary" href="/categories/introduction">introduction</a>
+            
+            <a class="badge badge-primary" href="/categories/mali">mali</a>
+            
+            <a class="badge badge-primary" href="/categories/r">r</a>
+            
+            <a class="badge badge-primary" href="/categories/security">security</a>
+            
+        </p>
+        
+    
+        
+        <h4>Tags</h4>
+        <p>
+            
+            <a class="badge badge-primary" href="/tags/attacks">attacks</a>
+            
+            <a class="badge badge-primary" href="/tags/ggplot2">ggplot2</a>
+            
+            <a class="badge badge-primary" href="/tags/ggvis">ggvis</a>
+            
+            <a class="badge badge-primary" href="/tags/incidents">incidents</a>
+            
+            <a class="badge badge-primary" href="/tags/mali">mali</a>
+            
+            <a class="badge badge-primary" href="/tags/malilink">malilink</a>
+            
+            <a class="badge badge-primary" href="/tags/plotly">plotly</a>
+            
+            <a class="badge badge-primary" href="/tags/qgis">qgis</a>
+            
+            <a class="badge badge-primary" href="/tags/r">r</a>
+            
+            <a class="badge badge-primary" href="/tags/r-markdown">r-markdown</a>
+            
+            <a class="badge badge-primary" href="/tags/rmarkdown">rmarkdown</a>
+            
+            <a class="badge badge-primary" href="/tags/security">security</a>
+            
+            <a class="badge badge-primary" href="/tags/shiny">shiny</a>
+            
+            <a class="badge badge-primary" href="/tags/terrorism">terrorism</a>
+            
+            <a class="badge badge-primary" href="/tags/threats">threats</a>
+            
+            <a class="badge badge-primary" href="/tags/ubuntu">ubuntu</a>
+            
+        </p>
+        
+    
+</section>
+    
+</aside>
+
+      </div>
+    </div>
+    
+
+    
+      
+
+
+
+
+
+
+
+<footer class="blog-footer w-100">
+    <nav class="navbar navbar-light bg-light">
+        <p class="w-100 text-center"> </p>
+        <p class="w-100 text-center"><a href="#">Back to top</a></p>
+    </nav>
+</footer>
+
+    
+
+    
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  </body>
+</html>
