@@ -160,7 +160,7 @@ df_severity %>%
   spread(key = year, value = incidents) %>% 
   select(-id) %>%
 #  knitr::kable(caption = paste('Incidents, by severity and by year,', daterange), booktabs = TRUE, "html") %>% # en
-  knitr::kable(caption = paste('Incidents, by sévérité and par an,', daterange), booktabs = TRUE) %>% # fr
+  knitr::kable(caption = paste('Incidents, by sévérité and par an,', daterange), booktabs = TRUE, "html") %>% # fr
   kableExtra::kable_styling(bootstrap_options = c("striped", "responsive"), full_width = TRUE)
 
 ```
@@ -272,7 +272,7 @@ Pour le moment, concentrons sur le premier groupe.
 La carte ci-dessous montre, pour chaque lieu connu, le nombre d'incidents par année et par sévérité.
 
 <div>
-<iframe width="700" height="700" scrolling="yes" frameborder="0"  src="https://18.219.213.81/ssm5_fr/"> </iframe>
+<iframe width="700" height="700" scrolling="yes" frameborder="0"  src="http://18.219.213.81:3838/shiny/ssm5_fr/"> </iframe>
 </div>
 
 En regardant les points sur la carte, l'on commence à se faire une idées des zones qui sont les plus affectées par les incidents - selon le type et l'année d'intérêt.
@@ -284,7 +284,7 @@ Considérons les régions.
 De par leur faible nombre (8 régions + 1 district), ceci est le niveau qui se prête le mieux à la visualisation.
 
 <div>
-<iframe width="700" height="700" scrolling="yes" frameborder="0"  src="https://18.219.213.81/ssm6_fr/"> </iframe>
+<iframe width="700" height="700" scrolling="yes" frameborder="0"  src="http://18.219.213.81:3838/shiny/ssm6_fr/"> </iframe>
 </div>
 
 La deuxième méthode consiste en une approche visuelle plutôt qu'arithmétique.
@@ -292,7 +292,7 @@ Nous allons utiliser la fonction `stat_density2d` du package `ggplot2`.
 A travers une density bidimensielle, nous obtiendrons un aperçu des points chauds.
 
 <div>
-<iframe width="700" height="700" scrolling="yes" frameborder="0"  src="https://18.219.213.81/ssm7_fr/"> </iframe>
+<iframe width="700" height="700" scrolling="yes" frameborder="0"  src="http://18.219.213.81:3838/shiny/ssm7_fr/"> </iframe>
 </div>
 
 
