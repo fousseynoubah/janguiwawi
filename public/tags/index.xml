@@ -21,6 +21,24 @@
     </item>
     
     <item>
+      <title>Data</title>
+      <link>/tags/data/</link>
+      <pubDate>Mon, 16 Jul 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/data/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Elections</title>
+      <link>/tags/elections/</link>
+      <pubDate>Mon, 16 Jul 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/elections/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Ggplot2</title>
       <link>/tags/ggplot2/</link>
       <pubDate>Fri, 11 Jan 2019 00:00:00 +0000</pubDate>
@@ -71,6 +89,15 @@
       <pubDate>Thu, 10 May 2018 00:00:00 +0000</pubDate>
       
       <guid>/tags/plotly/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Presidential</title>
+      <link>/tags/presidential/</link>
+      <pubDate>Mon, 16 Jul 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/presidential/</guid>
       <description></description>
     </item>
     

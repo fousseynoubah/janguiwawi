@@ -1,0 +1,732 @@
+---
+title: 'Presidential election in Mali: a look at the electoral list before the dice rolls'
+author: Fousseynou Bah
+date: '2018-07-16'
+categories:
+  - Mali
+  - elections
+tags:
+  - data
+  - elections
+  - Mali
+  - presidential
+slug: presidential-election-in-mali-befor-we-roll-the-dice
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+### The packages
+library(tidyverse)
+library(viridis)
+library(gridExtra)
+library(knitr)
+library(kableExtra)
+
+### Setting the theme for ggplot
+theme_set(theme_bw())
+
+### The data
+load(url("https://github.com/fousseynoubah/elections/blob/master/presidential/presidential_data.RData?raw=true"))
+
+```
+
+## Getting started 
+
+Few weeks ago, when I heard that the voting cards were available, I almost went into a frenzy.
+Not because I'm militing for a candidate.
+Sure, I have my opinions and convictions, but it's not like I'm a fervent supporter of a given candidate, someone who sets out to convert anybody they get the chance to talk to about politics...
+Ok, maybe a little.
+But here, I was more driven by what voting means: a chance to speak up, an opportunity to make a difference or contribute to a change.
+And that's something to take very seriously, a privilege that's rarely acknowledged...well, until it's taken away.
+Anyway....
+I spent three days running, making calls, looking online to find out where I am registered to vote, where I could withdraw my card.
+After three days of weathering an impossibly burning sun and a freezing cold rain (brave me! - come one, I'm trying to turn this into a Hollywood movie material...or a Nollywood movie material), I finally got my card.
+I wanted to wait until the D-day to turn out and vote.
+That was it!
+But then, I learned through a friend that the electoral list was available online.
+And I saw an opportunity to do some data analysis.
+Rather than going out to conduct a poll - interesting ones are being done right now -, I thought I would focus on building a baseline, a foundation for the analysis of the results.
+
+The data is available on the webpage of the [General Delegation of Elections (_Délégation Générale aux Elections_)](http://www.dgemali.gouv.ml).
+I specifically used the information from this [document](http://www.dgemali.gouv.ml/photos/MALI_Statistiques_Electorales_Avril_2018.pdf).
+It already has graphs, maps and tables.
+
+The bulk of the work I did here consisted of organizing the data in an [Excel spreadsheet](https://github.com/fousseynoubah/elections/blob/master/presidential/liste_electorale.xlsx?raw=true), importing it into R and making it tidy.
+The output can be found on my [Github page](https://github.com/fousseynoubah/elections/tree/master/presidential).
+Yes, I confirm it!
+The 80%/20% rule is true.
+Most of my data science time goes into organizing and cleaning the data.
+The remaining time, I use it to complain, drink a lot of coffee, and do some actual analysis.
+
+## Who are the voters?
+
+On July 29, roughly 8 million Malian citizens are expected to vote.
+Well, at least, that how many people there are on the electoral list.
+Whether they will turn out or not is another story, one we will probably tell later.
+
+What is known about the voters varies depending on the source one uses.
+For those doing polls, the information probably ranges from the age and sex to aspects like the marital status, the professional occupation, or even the number of pets the voters have.
+Unfortunately, with the electoral list, the information is not that rich.
+Which is not to say it's not useful!
+
+Here's what we have: the voters' age.
+Using the distinction by sex, we can visualize at least an age pyramid.
+
+```{r presidential_gph1,echo=FALSE,message=FALSE,warning=FALSE,fig.align='center',out.width="100%"}
+
+# Age pyramid of the voters (2018)
+presidential_voters_age %>% 
+  filter(!(group == "total")) %>% 
+  mutate(voters = ifelse(group == "female", -voters, voters),
+         group = case_when(group == "male" ~ "Male", group == "female" ~ "Female") # en
+#         group = case_when(group == "male" ~ "Homme", group == "female" ~ "Femme") # fr
+         ) %>%
+  group_by(age, sex =group) %>% 
+  summarise(voters = sum(voters)) %>% 
+  ggplot(aes(x = age, y = voters/1e3, fill = sex)) +
+  geom_col(position = "stack") +
+  coord_flip(xlim = c(18, 100)) +
+  theme(plot.caption = element_text(size = 7) ) + 
+  scale_fill_viridis(discrete = TRUE) + 
+  scale_y_continuous(labels = abs) +
+  labs(x = "Age", y = "Voters (thousands)", fill = "Sex", # en
+#  labs(x = "Age", y = "Electeurs (milliers)", fill = "Sexe", # fr
+       caption = "Source: Based on data from http://www.dgemali.gouv.ml", # en
+#       caption = "Source: A partir de données tirées de http://www.dgemali.gouv.ml", # fr
+       subtitle = "Like any other age pyramid...well, almost" # en
+#       subtitle = "CComme n'importe quel autre pyramide... enfin, presque" # fr
+)
+
+```
+
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+
+# Table
+table <- 
+  presidential_voters_age %>% 
+  mutate(groupage = ifelse(age <= 25, 1,
+                           ifelse(age <= 35, 2,
+                                  ifelse(age <= 45, 3,
+                                         ifelse(age <= 55, 4,
+                                                ifelse(age <= 65, 5, 6))))),
+         groupname = factor(groupage,
+                            levels = c(1, 2, 3, 4, 5, 6),
+                            labels = c("18-25", "26-35", "36-45", "46-55", "56-65", "65+"),
+                            ordered = TRUE)) %>% 
+  group_by(groupage, groupname, group) %>% 
+  summarise(voters = sum(voters)) %>% 
+  group_by(group) %>% 
+  mutate(total = sum(voters),
+         share = round(100*voters/total, 2)) 
+
+table %>% 
+  ungroup() %>% 
+  select(groupname, group, share) %>% 
+  spread(key = group, value = share) %>% 
+  bind_rows(tibble(groupname = "Total", female = 100.00, male = 100.00, total = 100.00)) %>% 
+  rename(`Age group` = groupname, Female = female, Male = male, Total = total) %>% #en
+#  rename(`Groupe d'âge` = groupname, Femme = female, Homme = male, Total = total) %>% #fr
+  kable(caption = 'Voters, by age group and by sex (%)', booktabs = TRUE, "html") %>% #en
+#  kable(caption = "Electeurs, par groupe d'âge et par sexe (%)", booktabs = TRUE, "html") %>% #fr
+  kable_styling(bootstrap_options = c("striped", "responsive"), full_width = TRUE)
+
+rm(table)
+
+```
+
+As one would expect for a country like Mali, the age pyramid is an actual pyramid - [sorry Japan, we need another name for you](https://en.wikipedia.org/wiki/Aging_of_Japan) -, with a wide base.
+This means that the youth, those below 25 or 30 years of age are a key demographic group.
+However, I must admit that the base does not grow fully until the mid-20's.
+That's because, the youngsters are not all registered on the electoral list, which is derived from [the biometric database of the register of births, marriages and deaths](http://demarchesadministratives.gouv.ml/demarches/afficher/Inscription-sur-la-liste-electorale-demande).
+To assess the gap, let's compare with data from the [2009 census](http://www.instat-mali.org/contenu/rgph/tdemo09_rgph.pdf).
+
+```{r presidential_gph2,echo=FALSE,message=FALSE,warning=FALSE,fig.align='center',out.width="100%"}
+
+# Table 1
+table1 <- 
+  presidential_voters_age %>% 
+  mutate(groupage = ifelse(age <= 25, 1,
+                           ifelse(age <= 35, 2,
+                                  ifelse(age <= 45, 3,
+                                         ifelse(age <= 55, 4,
+                                                ifelse(age <= 65, 5, 6))))),
+         groupname = factor(groupage,
+                            levels = c(1, 2, 3, 4, 5, 6),
+                            labels = c("18-25", "26-35", "36-45", "46-55", "56-65", "65+"),
+                            ordered = TRUE)) %>% 
+  group_by(groupage, groupname, group) %>% 
+  summarise(voters = sum(voters)) %>% 
+  group_by(group) %>% 
+  mutate(total = sum(voters),
+         share = round(100*voters/total, 2),
+         source = "Electoral list") %>% # en
+#         source = "Liste électorale") %>% # fr
+  select(-c(total, voters))
+
+# Table 2
+table2 <- 
+  census_2009_popage %>% 
+  filter(code >= 18) %>% # Age above 18
+  mutate(groupage = ifelse(code <= 25, 1,
+                           ifelse(code <= 35, 2,
+                                  ifelse(code <= 45, 3,
+                                         ifelse(code <= 55, 4,
+                                                ifelse(code <= 65, 5, 6))))),
+         groupname = factor(groupage,
+                            levels = c(1, 2, 3, 4, 5, 6),
+                            labels = c("18-25", "26-35", "36-45", "46-55", "56-65", "65+"),
+                            ordered = TRUE)) %>% 
+  filter(situation == "total" & code < 99) %>% # excluding ND
+  group_by(groupage, groupname, group = sex) %>% 
+  summarise(population = sum(population)) %>% 
+  group_by(group) %>% 
+  mutate(total = sum(population),
+         share = round(100*population/total, 2),
+         source = "Census 2009") %>% # en
+#         source = "RGPH 2009") %>% # fr
+  select(-c(total, population))
+
+# Comparing the data
+table1 %>% 
+  bind_rows(table2) %>%
+  ungroup() %>% 
+  mutate(
+    group = case_when(group == "male" ~ "Male", group == "female" ~ "Female", group == "total" ~ "Total") # en
+#    group = case_when(group == "male" ~ "Homme", group == "female" ~ "Femme", group == "total" ~ "Total") # fr
+) %>% 
+  ggplot(aes(x = source, y = share, fill = reorder(groupname, -groupage))) +
+  geom_col(position = "stack") +
+  facet_wrap(~group) +
+  theme(strip.background = element_rect(fill = "transparent"),
+        axis.text.x = element_text(size = 8),
+        plot.caption = element_text(size = 7),
+        plot.subtitle = element_text(size = 8)) + 
+  scale_fill_viridis(discrete = TRUE) + 
+  labs(
+    x = "", y = "Share", fill = "Age group", # en
+#    x = "", y = "Part", fill = "Groupe d'âge ", # fr
+       caption = "Source: Based on data from http://www.dgemali.gouv.ml and http://www.instat-mali.org",
+#       caption = "Source: A partir de données tirées de http://www.dgemali.gouv.ml et http://www.instat-mali.org", # fr
+       subtitle = "On the 2018 electoral list, the weight of the under-35 in voting population is 15 points below its 2009 level" # en
+#       subtitle = "Sur la liste électoral de 2018, le poids des électeurs moins de 35 ans est de 15 points en dessous de celui de 2009" # fr
+)
+
+rm(table1, table2)
+
+```
+
+The comparison reveals that the weight of the population under 35 in the electoral list is 15 percentage points below its 2009 level (based on the 2009 census).
+We would have to wait and see if the youngsters that are registered will turn out and vote, and make up those who can't.
+
+Unfortunately, the [DGE document](http://www.dgemali.gouv.ml/photos/MALI_Statistiques_Electorales_Avril_2018.pdf) does not cross the age of the voters with their location.
+That would've enabled additional visualization, such as the _faceting_ of the age pyramid by region or by district.
+
+## Where are the voters?
+
+When we turn to the voters' location, we find more details in the document.
+Domestic voters are grouped by sex and by municipality, and those abroad by sex and by country.
+
+```{r presidential_gph3,echo=FALSE,message=FALSE,warning=FALSE,fig.align='center',out.width="100%"}
+
+# Location
+presidential_list %>% 
+  select(Admin0_Nam, Admin1_Nam, district, nom, centres_vote, bureaux_vote, hommes, femmes, total) %>% 
+  mutate(
+    Admin0_Nam = ifelse(Admin0_Nam == "Mali", "Domestic", "Foreign"), #en 
+    district = ifelse(district == "Afrique", "Africa", #en 
+                      ifelse(district == "Amerique", "America", #en 
+                             ifelse(district == "Europe", "Europe", #en
+                                    ifelse(district == "Asie", "Asia", district)))), #en 
+    Admin1_Nam = ifelse(is.na(Admin1_Nam) & !is.na(district), district, Admin1_Nam)
+    ) %>% 
+  group_by(Admin0_Nam, Admin1_Nam) %>% 
+  summarise(male = sum(hommes, na.rm = TRUE),
+            female = sum(femmes, na.rm = TRUE)) %>%
+  gather(key = sex, value = voters, -c(Admin0_Nam, Admin1_Nam)) %>%
+  mutate(
+    sex = case_when(sex == "male" ~ "Male", sex == "female" ~ "Female") # en
+#    sex = case_when(sex == "male" ~ "Homme", sex == "female" ~ "Femme") # fr
+  ) %>% 
+  ggplot(aes(x = reorder(Admin1_Nam, voters), y = voters/1e3, fill = sex)) +
+  geom_col(position = "stack") +
+  coord_flip() +
+  facet_wrap(~Admin0_Nam, scales = "free") +
+  theme(strip.background = element_rect(fill = "transparent"),
+        plot.caption = element_text(size = 7),
+        plot.subtitle = element_text(size = 9)) + 
+  scale_fill_viridis(discrete = TRUE) + 
+  labs(
+    x = "", y = "Voters (thousands)", fill = "Sex", # en
+#    x = "", y = "Electeurs (milliers)", fill = "Sexe", # fr
+    caption = "Source: Based on data from http://www.dgemali.gouv.ml", # en
+#    caption = "Source: A partir de données tirées de from http://www.dgemali.gouv.ml", # fr
+    subtitle = "Domestically, there is a parity, but abroad men are the key demographic group" # en
+#    subtitle = "Au niveau national, il y a une parité, mais à l'étranger, les hommes constituent le groupe démographique clé" # fr
+    )
+
+```
+
+Domestically, voters are concentrated in the south of the country.
+The northern regions - Tombouctou, Gao, Kidal - represent `r presidential_list %>% select(Admin1_Nam, total) %>% filter(Admin1_Nam %in% c("Tombouctou", "Gao", "Kidal")) %>% summarise(total = 100*sum(total, na.rm = TRUE)/8000462) %>% round(2)`% of the voting population.
+With the center added - Mopti -, that share goes up to `r presidential_list %>% select(Admin1_Nam, total) %>% filter(Admin1_Nam %in% c("Mopti","Tombouctou", "Gao", "Kidal")) %>% summarise(total = 100*sum(total, na.rm = TRUE)/8000462) %>% round(2)`%.
+These numbers are in line with the spatial distribution of the population.
+However, the extent to which the voting population will turn out in those regions is something independent of its size.
+It will depend on the security context.
+We will only be able to measure that afterwards.
+
+When we turn to the voters located abroad - `r presidential_list %>% filter(Admin0_Nam == "Etranger") %>% summarise(sum = sum(total, na.rm = TRUE)) %>% as.integer()` or
+`r presidential_list %>% filter(Admin0_Nam == "Etranger") %>% summarise(sum = 100*sum(total, na.rm = TRUE)/8000462) %>% round(2)`% of the total voting population -, we clearly see the demographic of immigration at work.
+It is driven by men who, subsequently, constitute the majority of that group (`r presidential_list %>% filter(Admin0_Nam == "Etranger") %>% summarise(sharemen = 100* sum(hommes, na.rm = TRUE)/sum(total, na.rm = TRUE)) %>% round(2)`%).
+
+```{r echo=FALSE,message=FALSE,warning=FALSE,fig.align='center',out.width="100%"}
+
+# Table
+table <- 
+  presidential_list%>% 
+  select(Admin0_Nam, Admin1_Nam, district, nom, centres_vote, bureaux_vote, hommes, femmes, total) %>% 
+  mutate(
+    Admin0_Nam = ifelse(Admin0_Nam == "Mali", "Domestic", "Foreign"), # en
+    district = ifelse(district == "Afrique", "Africa", # en 
+                      ifelse(district == "Amerique", "America", # en 
+                             ifelse(district == "Europe", "Europe", # en 
+                                    ifelse(district == "Asie", "Asia", district)))), # en 
+    Admin1_Nam = ifelse(is.na(Admin1_Nam) & !is.na(district), district, Admin1_Nam)) %>% 
+  group_by(Admin0_Nam, Admin1_Nam) %>% 
+  summarise(male = sum(hommes, na.rm = TRUE),
+            female = sum(femmes, na.rm = TRUE),
+            total =  sum(total, na.rm = TRUE)) %>%
+  gather(key = group, value = voters, -c(Admin0_Nam, Admin1_Nam)) %>% 
+  group_by(group) %>% 
+  mutate(total = sum(voters),
+         share = round(100*voters/total, 2))
+  
+table %>% 
+  ungroup() %>% 
+  select(Admin0_Nam, Admin1_Nam, group, share) %>% 
+  spread(key = group, value = share) %>% 
+  bind_rows(data_frame(Admin0_Nam = "Total", Admin1_Nam = "Total", female = 100.00, male = 100.00, total = 100.00)) %>% 
+#  bind_rows(data_frame(groupname = "Population", female = 4106304, male = 3894158, total = 8000462)) %>% 
+  rename(Zone = Admin0_Nam, Region = Admin1_Nam,Female = female, Male = male, Total = total) %>%
+  kable(caption = 'Voters, by zone/region and by sex (%)', booktabs = TRUE, "html")%>% 
+  kable_styling(bootstrap_options = c("striped", "responsive"), full_width = TRUE)
+
+rm(table)
+
+```
+
+Now let's go back to the homeland, and do some mapping to see how the electorate is scattered across the country.
+We start by grouping the municipalities by population size:
+
+- 0 to 5 thousand ;
+
+- 5 to 10 thousand ;
+
+- 10 to 50 thousand ;
+
+- 50 to 100 thousand ;
+
+- 100 thousand and above.
+
+```{r presidential_map1,echo=FALSE,message=FALSE,warning=FALSE,fig.align='center',out.width="100%"}
+
+# Map
+
+map_data <- 
+  presidential_list %>% 
+  filter(!(Admin0_Nam == "Etranger")) %>% 
+  select(Pcode_Ad_3, Admin3_Nam, district, male = hommes, female = femmes, total) %>% 
+  group_by(Pcode_Ad_3, Admin3_Nam, district) %>% 
+  summarise(male = sum(male, na.rm = TRUE),
+            female = sum(female, na.rm = TRUE),
+            total = sum(total, na.rm = TRUE)) %>% 
+  mutate(interval = ifelse(total < 5000, 1,
+                          ifelse(total < 10000, 2,
+                                 ifelse(total < 50000, 3,
+                                        ifelse(total < 100000, 4, 5 )))),
+         interval = factor(interval,
+                           levels = c(1, 2, 3, 4, 5),
+                           labels = c("[0-5[", "[5-10[", "[10-50[",
+                                      "[50-100[", "[100- ["),
+                           ordered = TRUE)) %>% 
+  filter(!is.na(Pcode_Ad_3))
+
+ggplot() + 
+  geom_sf(data = map_municipality_sf %>% 
+            left_join(map_data, 
+                      by = c("Pcode_Ad_3", "Admin3_Nam")),
+          mapping = aes(fill = interval), colour = "transparent") + # , size = 0.015
+  theme(
+    axis.text = element_blank(),
+    axis.ticks = element_blank(),
+    panel.grid = element_line(colour = "transparent"),
+    panel.background = element_rect(fill = "transparent", colour = "transparent"),
+    plot.caption = element_text(size = 7), 
+    plot.subtitle = element_text(size = 9)
+    ) +
+  scale_fill_viridis(discrete = TRUE, direction = -1) +
+  labs(
+    x = "", y = "", color = "", fill = "Voters \n (thousands)", # en
+#    x = "", y = "", color = "", fill = "Electeurs \n (milliers)", # fr
+    subtitle = "Most municipalities count 5 to 10 thousand voters", # en
+#    subtitle = "La majorité des communes comptent entre 5 et 10 milles électeurs", # fr
+    caption = "Source: Based on data from http://www.dgemali.gouv.ml" # en
+#    caption = "Source: A partir de données tirées de from http://www.dgemali.gouv.ml", # fr
+    )
+
+rm(map_data)
+
+```
+
+
+```{r echo=FALSE,message=FALSE,warning=FALSE,fig.align='center',out.width="100%"}
+
+# Table
+table <- 
+  presidential_list %>% 
+  filter(!(Admin0_Nam == "Etranger")) %>% 
+  group_by(Pcode_Ad_3, Admin3_Nam, district) %>% 
+  summarise(total = sum(total, na.rm = TRUE)) %>% 
+  ungroup() %>% 
+  mutate(share = total / sum(total),
+         interval = ifelse(total < 5000, 1,
+                          ifelse(total < 10000, 2,
+                                 ifelse(total < 50000, 3,
+                                        ifelse(total < 100000, 4, 5 )))),
+         interval = factor(interval,
+                           levels = c(1, 2, 3, 4, 5),
+                           labels = c("[0-5[", "[5-10[", "[10-50[",
+                                      "[50-100[", "[100- ["),
+                           ordered = TRUE)) %>% 
+  filter(!is.na(district))
+
+table %>%   
+  group_by(interval) %>% 
+  summarise(number = n()) %>% 
+  mutate(share = round(100*number/703, 2)) %>% 
+  bind_rows(data_frame(interval = "Total", number = 703, share = 100.00)) %>% 
+  rename(`Voters (thousands)` = interval, `Municipalities (number)` = number, `Municipalities (share, %)` = share) %>%
+  kable(caption = 'Voting municipalities, by size of the voting population', booktabs = TRUE, "html")%>% 
+  kable_styling(bootstrap_options = c("striped", "responsive"), full_width = TRUE)
+
+rm(table)
+
+```
+
+We see that `r presidential_list %>% filter(!(Admin0_Nam == "Etranger")) %>% group_by(Pcode_Ad_3, Admin3_Nam, district) %>% summarise(total = sum(total, na.rm = TRUE)) %>% ungroup() %>% mutate(share = (total < 10000)) %>% summarise(mean = round(100*mean(share), 2))` of the municipalities count less than 10000 thousand voters.
+Now, we may not have the numbers to see how that factored into the campaign strategies.
+Did the candidates focus on the rural areas where reside the majority of the voters, but where the turn out rate might not be high? 
+Or did they select the heavyweights, meaning the municipalities and districts of critical size, and where the mobilization can easily translate into votes?
+Given that we have a universal suffrage system, one can assume a reasonable trade-off on the candidates' part.
+Let's see which are the municipalities with the largest electorate.
+Let's try 50 thousand voters and above:
+
+```{r presidential_gph4,echo=FALSE,message=FALSE,warning=FALSE,fig.align='center',out.width="100%"}
+
+# Municipalities with the largest electorate
+
+presidential_list %>% 
+  filter(!(Admin0_Nam == "Etranger")) %>% 
+  mutate(Admin3_Nam = str_replace(Admin3_Nam, "Commune", "Municipality")) %>% # en
+  group_by(Pcode_Ad_3, Admin3_Nam, district) %>% 
+  summarise(total = sum(total, na.rm = TRUE)) %>% 
+  filter(total >= 50000) %>% 
+  ggplot(aes(x = reorder(Admin3_Nam, total), y = total/1000, fill = district)) +
+  geom_col() +
+  coord_flip() +
+  theme(plot.subtitle = element_text(size = 9),
+        plot.caption = element_text(size = 7)) + 
+  scale_fill_viridis(discrete = TRUE) +
+  labs(
+    x = "", y = "Voters (thousands)", fill = "District",
+#    x = "", y = "Electeurs (milliers)", fill = "Cercle",
+    caption = "Source: Based on data from http://www.dgemali.gouv.ml", # en
+#    caption = "Source: A partir de données tirées de http://www.dgemali.gouv.ml", # fr
+    subtitle = "The heavyweights are mostly in or near the national capital and the regional capitals" # en
+#    subtitle = "Les poids lourds sont pour la plupart dans ou à coté des capitales nationale et régionales" # fr
+    )
+
+```
+
+It clearly shows that they're in the national capital or the regional capitals.
+The exceptions that make the list happen to be very close the capital (Kalabancoro, Kati) or to hold a strategic importance for the economy (Koutiala, for the cotton industry and the closeness to the border with Ivory Coast).
+The electorate in these heavyweights is 7 to 45 times larger than that of the median municipality (`r presidential_list %>% summarise(median = median(total, na.rm = TRUE)) %>% round()` voters).
+Therefore, it makes sense for a candidate to throw all they've got at them.
+We'll see how it turns out.
+Hopefully, the results will be published in as much details as the list was given.
+
+## Few questions
+
+As I examined the [DGE document](http://www.dgemali.gouv.ml/photos/MALI_Statistiques_Electorales_Avril_2018.pdf), few questions crossed my mind.
+The obvious one was - one that anyone who's been aware of Mali's situation over the last six years would probably ask - : "Can the elections really be held in this context?"
+Not only did I realize that the document did not have the data it takes to help me answer that question, but I also thought to myself that it was too late to raise it now that the decision has been made, and I myself I was determined to take part in it.
+However, it was still time to throw some questions around about the logistics.
+
+"What can be learned by computing few statistics about the voters and the polling places?"
+
+Let's start by looking at the relationship between the number of voters and the number of polling places.
+
+```{r presidential_gph6,echo=FALSE,message=FALSE,warning=FALSE,fig.align='center',out.width="100%"}
+
+# Graph 1
+gph1 <- 
+  presidential_list %>% 
+  filter(!is.na(district)) %>% 
+  select(places = bureaux_vote, centre = centres_vote, total) %>% 
+  ggplot(aes(x = total/1000, y = places, color = centre)) +
+  geom_point(alpha = 0.4) +
+  geom_smooth(method = 'loess', se = FALSE) +
+  theme(plot.subtitle = element_text(size = 9),
+        plot.caption = element_text(size = 7),
+        legend.position = "bottom") + 
+  scale_color_viridis() +
+  labs(
+    x = "Voters (thousands)", y = "Polling places", color = "Voting centers", # en
+#    x = "Electeurs (milliers)", y = "Bureaux de votes", color = "Centres de vote", # fr
+    caption = "Source: Based on data from http://www.dgemali.gouv.ml", # en
+#    caption = "Source: A partir de données tirées de http://www.dgemali.gouv.ml", # fr
+    subtitle = "The linearity suggest consistency in the design" # en
+#    subtitle = "La linéarité suggère une consistence dans la structure" # fr
+    )
+
+# Graph 2
+ratiomean <- mean(presidential_list$total/presidential_list$bureaux_vote, na.rm = TRUE)
+gph2 <- 
+  presidential_list %>% 
+  mutate(ratio = total/bureaux_vote) %>% 
+  filter(ratio > 0) %>% 
+  ggplot() +
+  geom_histogram(aes(x = ratio), fill = "darkorange") +
+  geom_vline(aes(xintercept = ratiomean), color = "red") +
+  theme(plot.caption = element_text(size = 7) ) + 
+  labs(
+    x = "Ratio voters/polling place", y = "Count",
+#    x = "Raio électeurs/bureau de vote", y = "Nombre",
+    caption = "Source: Based on data from http://www.dgemali.gouv.ml", # en
+#    caption = "Source: A partir de données tirées de http://www.dgemali.gouv.ml", # fr
+    subtitle = "On average there is a polling place for every 330 voters" # en
+#    subtitle = "En moyenne, il y a un bureau de vote pour 330 électeurs" # fr
+    )
+
+# Combining
+grid.arrange(gph1,
+             gph2,
+             layout_matrix = matrix(c(1, 2), byrow = TRUE, nrow = 2))
+
+rm(gph1, gph2)
+
+```
+
+It appears that, on average, there is a polling place for every 330 voters.
+If the voting should take place during a 12-hour period for example, every vote should take about `r round((12*60)/330, 2)` minutes.
+Well, that's based on the assumption of a full turn out.
+And also, 330 is just an average.
+Let's map the ratio to see how the situation varies across the country.
+
+```{r presidential_map2,echo=FALSE,message=FALSE,warning=FALSE,fig.align='center',out.width="100%"}
+
+# Map
+map_data <- 
+  presidential_list %>% 
+  filter(!(Admin0_Nam == "Etranger")) %>% 
+  select(Pcode_Ad_3, Admin3_Nam, district, male = hommes, female = femmes, total, places = bureaux_vote, centre = centres_vote) %>% 
+  group_by(Pcode_Ad_3, Admin3_Nam, district) %>% 
+  summarise(male = sum(male, na.rm = TRUE), 
+            female = sum(female, na.rm = TRUE), 
+            total = sum(total, na.rm = TRUE),
+            places = sum(places, na.rm = TRUE),
+            centre = sum(centre, na.rm = TRUE),
+            ratio = total/places) %>% 
+  filter(!is.na(Pcode_Ad_3))
+
+ggplot() + 
+  geom_sf(data = map_municipality_sf %>% 
+            left_join(map_data, 
+                      by = c("Pcode_Ad_3", "Admin3_Nam")),
+          mapping = aes(fill = ratio), colour = "transparent") + # , size = 0.015
+  theme(
+    axis.text = element_blank(),
+    axis.ticks = element_blank(),
+    panel.grid = element_line(colour = "transparent"),
+    panel.background = element_rect(fill = "transparent", colour = "transparent"),
+    plot.caption = element_text(size = 7), 
+    plot.subtitle = element_text(size = 9)
+    ) +
+  scale_fill_viridis(direction = -1) +
+  labs(
+    x = "", y = "", color = "", fill = "Ratio voters to \n polling places", # en
+#    x = "", y = "", color = "", fill = "Ratio électeurs par \n bureau de vote", # fr
+    subtitle = "The pressure on polling places seems evenly distributed (mostly)", # en
+#    subtitle = "La pression sur les bureaux de vote semble (presque) uniformément répartie", # fr
+    caption = "Source: Based on data from http://www.dgemali.gouv.ml" # en
+#    caption = "Source: A partir de données tirées de from http://www.dgemali.gouv.ml", # fr
+    )
+
+rm(map_data)
+
+```
+
+Overall, the pressure on the polling places seems evenly distributed across the country.
+With few exceptions in the north, though.
+The district of Goundam, in the north west has a low ratio.
+In Kidal we have extremes: a high-ratio municipality (Tessalit) next to a low-ratio one (Timtaghene).
+
+It is also useful to remember that the polling places will be located in schools (called voting centers), where the number of classrooms can play a role in the pressure.
+Let's see how the ratio polling places to schools is distributed across regions.
+Let's compute the average ratio by region, along with the standard deviation (measuring the variability of the ratio across municipalities within the same region).
+
+```{r echo=FALSE,message=FALSE,warning=FALSE,fig.align='center',out.width="100%"}
+
+# Polling places per schools
+presidential_list %>% 
+  filter(!is.na(Admin1_Nam)) %>% 
+  mutate(ratio = bureaux_vote/centres_vote,
+         Pcode_Ad_1 = parse_number(Pcode_Ad_1)) %>% 
+  group_by(Pcode_Ad_1, Admin1_Nam) %>% 
+  summarise(
+    mean = mean(ratio, na.rm = TRUE) %>% round(2),
+    sd = sd(ratio, na.rm = TRUE) %>% round(2)
+            ) %>% 
+  mutate(bamako = ifelse(Admin1_Nam == "Bamako", "Bamako", "Regions")) %>% 
+  ungroup() %>% 
+  select(-c(Pcode_Ad_1, bamako)) %>% 
+  rename(
+    `Region` = Admin1_Nam, Mean = mean, `Standard deviation` = sd # en
+#    `Région` = Admin1_Nam, Moyenne = mean, `Ecart-type` = sd # fr
+    ) %>% 
+  kable(caption = 'Ratio: polling places to voting centers, by region', booktabs = TRUE, "html") %>% #en
+#  kable(caption = "Ratio: bureaux de votes par centre de vote, par région", booktabs = TRUE, "html") %>% #fr
+  kable_styling(bootstrap_options = c("striped", "responsive"), full_width = TRUE)
+
+```
+
+In the regions (outside the capital), the average ratio ranges from 1.5 to 2 (slightly above) across regions.
+There will be approximately two polling places per voting center.
+In Bamako the average is much higher, around 17, but so is the variability.
+
+With the results, we'll see how things turn out!
+
+
+## The withdrawal of electoral cards
+
+On the website on the Prime Minister's Office (*Primature*), announcements are made as to the number of voters who withdrew their electoral cards from the polls they are registered at.
+It seemed useful to examine those announcements and extract some data for visualization purposes, and also to consolidate the baseline for further analysis.
+The data used here comes from three pages: [here](http://www.primature.gov.ml/index.php/salle-de-presse/actualites/11722-point-des-preparatifs-de-l-election-du-president-de-la-republique-du-29-juillet-2018-au-mali), [here](http://www.primature.gov.ml/index.php/salle-de-presse/actualites/11728-situation-de-distribution-des-cartes-d-electeur-biometriques-a-la-date-du-12-juillet-2018), and [here](http://www.primature.gov.ml/index.php/salle-de-presse/actualites/11731-retrait-des-cartes-d-electeurs).
+
+Are also added other sources from the online press and social networks (all relaying data from meetings with official sources).
+The details are given in this [file](https://github.com/fousseynoubah/elections/blob/master/presidential/liste_electorale.xlsx?raw=true).
+
+
+```{r presidential_gph8,echo=FALSE,message=FALSE,warning=FALSE,fig.align='center',out.width="100%"}
+
+# Withdrawal rate: graph
+presidential_withdrawal_region %>% 
+  rename(polls = bureau, voters = recues, withdrawn = retrait, remaining = reste, rate = pourcentage) %>% 
+  mutate(Pcode_Ad_1 = parse_number(Pcode_Ad_1),
+         Admin1_Nam = ifelse(Admin1_Nam == "Etranger", "Abroad", Admin1_Nam),
+         source = factor(source,
+                         levels = c("Primature", "Presse", "Réseaux sociaux"),
+                         labels = c("Prime Minister's Office", "Press", "Social networks"), # en
+#                         labels = c("Primature", "Presse", "Réseaux sociaux"), # fr
+                         ordered = TRUE)) %>% 
+  group_by(Pcode_Ad_1, Admin1_Nam) %>% 
+  mutate(rate_evolution = lag(rate),
+         rate_evolution = rate - rate_evolution,
+         rate_evolution = ifelse(is.na(rate_evolution), rate, rate_evolution),
+         date_evolution = factor(format(date, format = "%d-%b"), ordered = TRUE)
+         ) %>% 
+  ggplot() +
+  geom_col(aes(x = reorder(Admin1_Nam, Pcode_Ad_1), 
+               y = 100*rate_evolution, 
+               fill = reorder(date_evolution, -as.integer(date))), 
+           position = "stack") +
+  ylim(0, 100) +
+  coord_flip() +
+  theme(plot.subtitle = element_text(size = 9),
+        plot.caption = element_text(size = 7)) + 
+  scale_fill_viridis(discrete = TRUE) + 
+  labs(
+    x = "", y = "Progression of the withdrawal rate of electoral cards (%)", fill = "Date", # en
+#    x = "", y = "Progression du taux de retrait des cartes d'électeurs", fill = "Date", # fr
+    subtitle = "The share of voters who withdrew their card ranges from 25% to 80% (by region, latest data)", # en
+#    subtitle = "The share of voters who withdrew their card ranges from 25% to 80% (by region, latest data)", # fr
+    caption = "Source: Based on data from http://primature.gov.ml, online press and social networks" # en
+#    caption = "Source: A partir de données tirées de http://primature.gov.ml, presse en ligne et réseaux sociaux" # fr
+)
+
+```
+
+One of the pages gives details of the withdrawal data by district.
+Let's map that!
+
+```{r presidential_map3,echo=FALSE,message=FALSE,warning=FALSE,fig.align='center',out.width="100%"}
+
+# Map
+withdrawal_district <- 
+  presidential_withdrawal_district %>% 
+  filter(!is.na(Pcode_Ad_2)) %>% 
+  group_by(Pcode_Ad_2, Admin2_Nam, admin2RefN, date) %>% 
+  summarise(polls = sum(bureau, na.rm = TRUE),
+            voters = sum(recues, na.rm = TRUE),
+            withdrawn = sum(retrait, na.rm = TRUE),
+            remaining = sum(reste, na.rm = TRUE)) %>% 
+  mutate(rate = 100*withdrawn/voters) 
+
+ggplot() + 
+  geom_sf(data = map_district_sf %>% 
+            left_join(withdrawal_district, 
+                      by = c("Pcode_Ad_2", "Admin2_Nam", "admin2RefN")),
+          mapping = aes(fill = rate), colour = "transparent") +
+  theme(
+    axis.text = element_blank(),
+    axis.ticks = element_blank(),
+    panel.grid = element_line(colour = "transparent"),
+    panel.background = element_rect(fill = "transparent", colour = "transparent"),
+    plot.caption = element_text(size = 7), 
+    plot.subtitle = element_text(size = 9)
+    ) +
+  scale_fill_viridis(direction = -1) +
+  labs(
+    x = "", y = "", color = "", fill = "Withdrawal \n rate", # en
+#    x = "", y = "", color = "", fill = "Taux de \n retrait", # fr
+    subtitle = "The withdrawal rate ranges from 0% to 80% (date: 12-july-2018)", # en
+#    subtitle = "Le taux de retrait varie entre 0% et 80% (date: 12-juil-2018", # fr
+    caption = "Source: Based on data from http://primature.gov.ml" # en
+#    caption = "Source: A partir de données tirées de from http://primature.gov.ml", # fr
+    )
+
+rm(withdrawal_district)
+
+```
+
+Over the `r presidential_withdrawal_district %>% filter(is.na(Pcode_Ad_2)) %>% nrow()` centres listed, the rate is know for only `r presidential_withdrawal_district %>% filter(is.na(Pcode_Ad_2) & !is.na(pourcentage)) %>% nrow()`.
+The information has not been given for the others.
+
+```{r presidential_gph09,echo=FALSE,message=FALSE,warning=FALSE,fig.align='center',out.width="100%"}
+
+# Withdrawal rate: abroad
+presidential_withdrawal_district %>% 
+  filter(is.na(Pcode_Ad_2) & !is.na(pourcentage)) %>% 
+  ggplot() +
+  geom_col(aes(x = reorder(cercle, pourcentage), y = 100*pourcentage, fill = pourcentage)) +
+  coord_flip() +
+  theme(legend.position = "none",
+        strip.background = element_rect(fill = "transparent"),
+        plot.caption = element_text(size = 7)) + 
+  scale_fill_viridis() +
+  labs(x = "", y = "Withdrawal rate of electoral cards (%)", fill = "",
+       subtitle = "The data on the card withdrawals is only available for 13 centres (cities) out of 45 \n for the voters living abroad (date: 12-july-2018)",
+       caption = "Source: Data from http://primature.gov.ml")
+
+```
+These centers represent about 
+`r round(100* presidential_withdrawal_district %>% filter(is.na(Pcode_Ad_2) & !is.na(pourcentage)) %>% summarise(voterscards = sum(recues, na.rm = TRUE)) / presidential_withdrawal_district %>% filter(is.na(Pcode_Ad_2)) %>% summarise(voterscards = sum(recues, na.rm = TRUE)), 2)`% of the electorate living abroad.
+However, the withdrawal is very low for the heavyweights of the list such as Abidjan (6.64% for about than 150 000 voters) or Bouaké (25.05% for over 30 000 voters).
+
+
+
+
+
+
+
